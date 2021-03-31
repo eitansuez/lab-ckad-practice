@@ -5,7 +5,7 @@ metadata:
   name: ckad-practice-workshop
 spec:
   title: CKAD Practice
-  description: A port of Liptan Biswas' CKAD practice challenge to educates
+  description: A port of Liptan Biswas' CKAD practice challenge
   vendor: kube.academy
   difficulty: beginner
   duration: 15m

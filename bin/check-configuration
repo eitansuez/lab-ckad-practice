@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+
+import subprocess
+
+class bcolors:
+    OKGREEN = '\033[92m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+def check_cmd(command, test):
+    s = subprocess.run(command, shell=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if s.returncode == 0:
+        print(test + f" {bcolors.OKGREEN}Passed{bcolors.ENDC}")
+    else:
+        print(test + f"{bcolors.FAIL} Failed{bcolors.ENDC}")
+
+
+check_cmd("kubectl get cm my-config", "Configmap my-config exists in session namespace?")
+check_cmd("kubectl get cm my-config -o jsonpath='{.data.confa}' | grep -q -w exvalue", "Configmap my-config contains correct key-value?")
+
+check_cmd("kubectl exec al-pod -- printenv | grep -q -w 'AL_USER=liptan'", "Environment variable contains correct value?")
+
+check_cmd("kubectl exec secure-pod -- id -u  | grep -q -w 1000", "Pod running with correct user?")
+check_cmd("kubectl exec secure-pod -- id -g  | grep -q -w 2000", "Pod running with correct group?")
+
+check_cmd("kubectl apply -f ~/limited-pod.yaml --dry-run=client -ojsonpath='{.spec.containers[0].resources.requests.memory}' | grep -q 100", "Pod in ~/limited-pod.yaml has correct memory requests?")
+check_cmd("kubectl apply -f ~/limited-pod.yaml --dry-run=client -ojsonpath='{.spec.containers[0].resources.limits.memory}' | grep -q 200", "Pod in ~/limited-pod.yaml has correct memory limits?")
+
+check_cmd("kubectl exec mydb -- printenv | grep -q -w 'MYSQL_ROOT_PASSWORD=YoYoSecret'", "Secrets from db-secret are exposed as env vars?")
+check_cmd("kubectl exec mydb -- printenv | grep -q -w 'MYSQL_PASSWORD=XoXoPassword'", "Secrets from db-secret are exposed as env vars?")
+check_cmd("kubectl exec mydb -- printenv | grep -q -w 'MYSQL_USER=k8s'", "Configmap from db-config are exposed as env vars?")
+check_cmd("kubectl exec mydb -- printenv | grep -q -w 'MYSQL_DATABASE=newdb'", "Configmap from db-config are exposed as env vars?")
+
+check_cmd("kubectl get sa namaste", "Service account namaste is created?")
+check_cmd("kubectl get po yo-namaste -o jsonpath='{.spec.serviceAccountName}'  | grep -q -w 'namaste'", "Pod yo-namaste uses namaste service account?")

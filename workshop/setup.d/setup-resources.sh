@@ -1,8 +1,20 @@
 #!/bin/bash
 
+cat >> ~/.inputrc << EOF
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+EOF
+
 cat >> ~/.bashrc << EOF
 set -o vi
 export DR="--dry-run=client -oyaml"
+EOF
+
+cat >> ~/.vimrc << EOF
+set tabstop=2 softtabstop=2 shiftwidth=2
+set number expandtab ruler autoindent smartindent
+syntax enable
+filetype plugin indent on
 EOF
 
 # install kubens/kubectx ..

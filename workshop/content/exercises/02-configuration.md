@@ -1,6 +1,7 @@
 
 ```examiner:execute-test
 name: config-init
+title: Initialize
 autostart: true
 ```
 
@@ -11,7 +12,7 @@ autostart: true
     title: ConfigMap my-config exists
     ```
 
-1. A config map named `al-conf` has been created. Expose the value of `al-user` to a pod named `al-pod` as the environment variable name `AL_USER`. Use redis image for the pod.
+1. A config map named `al-conf` has been created. Expose the value of `al-user` to a pod named `al-pod` as the environment variable name `AL_USER`. Use `redis` as the image for the pod.
 
     ```examiner:execute-test
     name: config-map-as-env

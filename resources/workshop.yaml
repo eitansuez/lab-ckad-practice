@@ -21,3 +21,5 @@ spec:
         layout: default
       editor:
         enabled: true
+      examiner:
+        enabled: true

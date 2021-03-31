@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kubectl get pod nginx
+kubectl get po nginx -o jsonpath='{.spec.containers[*].image}' | grep -q -w nginx

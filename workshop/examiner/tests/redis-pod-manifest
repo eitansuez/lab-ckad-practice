@@ -1,0 +1,5 @@
+#!/bin/bash
+
+k apply -f ~/mypodx.yaml --dry-run=server -o jsonpath='{.kind}' | grep -q -w 'Pod'
+k apply -f ~/mypodx.yaml --dry-run=server -o jsonpath='{.spec.containers[0].image}' | grep -q -w 'redis'
+k apply -f ~/mypodx.yaml --dry-run=server -o jsonpath='{.metadata.name}' | grep -q -w 'mypodx'

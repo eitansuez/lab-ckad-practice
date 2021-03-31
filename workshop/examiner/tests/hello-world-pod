@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kubectl get pod hello | grep -q -w Completed
+kubectl logs hello | grep -q -w 'Hello World'

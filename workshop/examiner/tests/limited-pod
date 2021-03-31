@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+kubectl apply -f ~/limited-pod.yaml --dry-run=client -ojsonpath='{.spec.containers[0].resources.requests.memory}' | grep -q 100
+kubectl apply -f ~/limited-pod.yaml --dry-run=client -ojsonpath='{.spec.containers[0].resources.limits.memory}' | grep -q 200

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+kubectl get cm my-config
+kubectl get cm my-config -o jsonpath='{.data.confa}' | grep -q -w exvalue

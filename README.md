@@ -1,27 +1,35 @@
-LAB - Markdown Sample
-=====================
+# CKAD Practice Educates Workshop
 
-Sample workshop content using Markdown formatting for pages.
+This repository is an [Educates](https://docs.edukates.io/) workshop.
 
-For more detailed information on how to create and deploy workshops, consult
-the documentation for eduk8s at:
+It is a port of Liptan Biswas' excellent [CKAD practice challenge](https://www.katacoda.com/liptanbiswas/courses/ckad-practice-challenges) to educates.
 
-* https://docs.eduk8s.io
+## Status
 
-If you already have the eduk8s operator installed and configured, to deploy
-and view this sample workshop, run:
+Just begun (not ready (yet)).
 
-```
-kubectl apply -f https://raw.githubusercontent.com/eduk8s/lab-markdown-sample/master/resources/workshop.yaml
-kubectl apply -f https://raw.githubusercontent.com/eduk8s/lab-markdown-sample/master/resources/training-portal.yaml
-```
+## Deployment Instructions
 
-This will deploy a training portal hosting just this workshop. To get the
-URL for accessing the training portal run:
+Assuming you already have a k8s cluster with the educates operator deployed..
 
-```
-kubectl get trainingportal/lab-markdown-sample
-```
+1. Clone this repo
+1. Navigate to its base directory
+1. Deploy the workshop:
 
-The training portal is configured to allow anonymous access. For your own
-workshop content you should consider removing anonymous access.
+    ```bash
+    kubectl apply -f resources/workshop.yaml
+    ```
+
+1. Deploy a sample training portal:
+
+    ```bash
+    kubectl apply -f resources/training-portal.yaml
+    ```
+
+1. Get the URL for the training portal:
+
+    ```bash
+    kubectl get trainingportal
+    ```
+
+The training portal is configured to allow anonymous access. For your own workshop content you should consider removing anonymous access.

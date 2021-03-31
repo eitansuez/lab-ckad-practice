@@ -1,8 +1,13 @@
-name: Markdown Sample
+name: CKAD Practice
 
 modules:
-    activate:
-    - workshop-overview
-    - setup-environment
-    - exercises/01-sample-content
-    - workshop-summary
+  activate:
+  - workshop-overview
+  - exercises/01-core-concepts
+  - exercises/02-configuration
+  - exercises/03-multi-container-pods
+  - exercises/04-observability
+  - exercises/05-pod-design
+  - exercises/06-services-and-networking
+  - exercises/07-state-persistence
+  - workshop-summary

@@ -2,6 +2,6 @@
 
 set -euo pipefail
 
-kubectl apply -f /home/eduk8s/mypodx.yaml --dry-run=server -o jsonpath='{.kind}' | grep -q -w 'Pod'
-kubectl apply -f /home/eduk8s/mypodx.yaml --dry-run=server -o jsonpath='{.spec.containers[0].image}' | grep -q -w 'redis'
-kubectl apply -f /home/eduk8s/mypodx.yaml --dry-run=server -o jsonpath='{.metadata.name}' | grep -q -w 'mypodx'
+kubectl apply -f ~/mypodx.yaml --dry-run=server -o jsonpath='{.kind}' | grep -q -w 'Pod'
+kubectl apply -f ~/mypodx.yaml --dry-run=server -o jsonpath='{.spec.containers[0].image}' | grep -q -w 'redis'
+kubectl apply -f ~/mypodx.yaml --dry-run=server -o jsonpath='{.metadata.name}' | grep -q -w 'mypodx'

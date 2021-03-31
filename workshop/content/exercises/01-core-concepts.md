@@ -17,5 +17,5 @@
 
     ```examiner:execute-test
     name: redis-pod-manifest
-    title: Pod emits greeting.
+    title: Pod yaml has correct name and image.
     ```

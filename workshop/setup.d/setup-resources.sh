@@ -2,6 +2,7 @@
 
 cat >> ~/.bashrc << EOF
 set -o vi
+export DR="--dry-run=client -oyaml"
 EOF
 
 # install kubens/kubectx ..

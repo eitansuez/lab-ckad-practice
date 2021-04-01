@@ -10,11 +10,29 @@ Your environment has been pre-configured with command completion, and a few shor
 
 - The kubectl command has been aliased as `k`.  Typing `k` sure beats having to type `kubectl` each and every time.
 
+    Try it:
+
+    ```terminal:execute
+    command: k get pod
+    ```
+
 - The environment variable `DR` has been set.  It expands to `--dry-run=client -oyaml` and is provided for convenience.  Each time you need to produce a _base_ yaml file for a pod or a deployment, the mechanism is to dry-run a kubectl command and set the output format to yaml.
+
+    Try it:
+
+    ```terminal: execute
+    command: k run my-web-server --image=nginx $DR > mypod.yaml
+    ```
 
 ## Editing
 
 The `.vimrc` file has been pre-set with line numbers and auto-indent.
+
+Try it:
+
+```terminal: execute
+command: vim mypod.yaml
+```
 
 ## The command line
 

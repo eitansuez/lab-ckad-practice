@@ -63,16 +63,16 @@ Run the script `check-configuration` to verify your solutions.
 
     1. Edit `al-pod.yaml` and add an `env` section (to the container specification) to configure the environment variable, as follows:
 
-    ```yaml
-    env:
-    - name: AL_USER
-      valueFrom:
-        configMapKeyRef:
-          name: al-confg
-          key: al-user
-    ```
+        ```yaml
+        env:
+        - name: AL_USER
+        valueFrom:
+            configMapKeyRef:
+            name: al-confg
+            key: al-user
+        ```
 
-    See [Use ConfigMap-defined environment variables in Pod commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#use-configmap-defined-environment-variables-in-pod-commands).
+        See [Use ConfigMap-defined environment variables in Pod commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#use-configmap-defined-environment-variables-in-pod-commands).
 
 1. Create a Pod named `secure-pod`. Use the `redis` image. Run pod as user 1000 and group 2000.
 

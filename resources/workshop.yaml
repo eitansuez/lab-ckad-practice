@@ -8,12 +8,14 @@ spec:
   description: A port of Liptan Biswas' CKAD practice challenge
   vendor: kube.academy
   difficulty: beginner
-  duration: 15m
+  duration: 60m
   url: https://github.com/eitansuez/lab-ckad-practice
   content:
     files: github.com/eitansuez/lab-ckad-practice
   session:
     namespaces:
+      security:
+        policy: anyuid
       budget: small
     applications:
       terminal:

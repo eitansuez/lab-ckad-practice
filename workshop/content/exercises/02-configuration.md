@@ -3,6 +3,7 @@
 name: config-setup
 title: Initialize
 autostart: true
+cascade: true
 ```
 
 1. Create a config map with the name `my-config` and value `confa=exvalue`.
@@ -10,6 +11,7 @@ autostart: true
     ```examiner:execute-test
     name: config-map
     title: ConfigMap my-config exists
+    cascade: true
     ```
 
 1. A config map named `al-conf` has been created.
@@ -24,6 +26,7 @@ autostart: true
     ```examiner:execute-test
     name: config-map-as-env
     title: Pod has environment variable with value from config map entry
+    cascade: true
     ```
 
 1. Create a Pod named `secure-pod`. Use the `redis` image. Run pod as user 1000 and group 2000.
@@ -31,6 +34,7 @@ autostart: true
     ```examiner:execute-test
     name: secure-pod
     title: Pod runs as user 1000 and group 2000
+    cascade: true
     ```
 
 1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `busybox` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
@@ -38,6 +42,7 @@ autostart: true
     ```examiner:execute-test
     name: limited-pod
     title: Pod yaml has specified resource memory requests and limits
+    cascade: true
     ```
 
 1. Create a secret `db-secret` with value `MYSQL_ROOT_PASSWORD=YoYoSecret` and `MYSQL_PASSWORD=XoXoPassword`.

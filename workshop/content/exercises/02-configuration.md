@@ -107,7 +107,7 @@ command: check-configuration
 1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `busybox` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
 
     ```bash
-    k run limited-pod --image=busybox --requests=memory=100Mi --limits=memory=200Mi
+    k run limited-pod --image=busybox --requests=memory=100Mi --limits=memory=200Mi --dry-run=client -o yaml > limited-pod.yaml
     ```
 
     Alternatively..

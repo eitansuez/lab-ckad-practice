@@ -122,7 +122,7 @@ Run the script `check-configuration` to verify your solutions.
 1. Create a secret `db-secret` with value `MYSQL_ROOT_PASSWORD=YoYoSecret` and `MYSQL_PASSWORD=XoXoPassword`.
 
     ```bash
-    k create secret generic db-secret --from-literal=MYSQL_ROOT_PASSWORD=YoYoSecret --from-literal= MYSQL_PASSWORD=XoXoPassword
+    k create secret generic db-secret --from-literal=MYSQL_ROOT_PASSWORD=YoYoSecret --from-literal=MYSQL_PASSWORD=XoXoPassword
     ```
 
     Then: Create a configmap named `db-config` with value `MYSQL_USER=k8s` and `MYSQL_DATABASE=newdb`.
@@ -167,6 +167,6 @@ Run the script `check-configuration` to verify your solutions.
 
     Try this:
 
-    ```execute:terminal
+    ```terminal:execute
     command: k explain pod.spec.serviceAccountName
     ```

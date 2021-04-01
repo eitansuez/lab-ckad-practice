@@ -1,8 +1,4 @@
 
-
-```terminal:clear-all
-```
-
 1. Create a Pod named `nginx`. Use `nginx` image.
 
     ```examiner:execute-test

@@ -1,11 +1,8 @@
 
 ```examiner:execute-test
-name: config-init
+name: config-setup
 title: Initialize
 autostart: true
-```
-
-```terminal:clear-all
 ```
 
 1. Create a config map with the name `my-config` and value `confa=exvalue`.

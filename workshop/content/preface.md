@@ -20,7 +20,7 @@ Your environment has been pre-configured with command completion, and a few shor
 
     Try it:
 
-    ```terminal: execute
+    ```terminal:execute
     command: k run my-web-server --image=nginx $DR > mypod.yaml
     ```
 
@@ -30,7 +30,7 @@ The `.vimrc` file has been pre-set with line numbers and auto-indent.
 
 Try it:
 
-```terminal: execute
+```terminal:execute
 command: vim mypod.yaml
 ```
 

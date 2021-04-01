@@ -30,6 +30,14 @@ Run the script `check-core-concepts` to verify your solutions.
 command: check-core-concepts
 ```
 
+## Cleanup
+
+Before proceeding to the next section, delete the pods you created in this section:
+
+```terminal:execute
+k delete pod --all
+```
+
 ## Solutions
 
 1. Create a Pod named `nginx`. Use `nginx` image.

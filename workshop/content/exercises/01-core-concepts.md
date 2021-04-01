@@ -1,4 +1,8 @@
 
+
+```terminal:clear-all
+```
+
 1. Create a Pod named `nginx`. Use `nginx` image.
 
     ```examiner:execute-test
@@ -21,6 +25,10 @@
     ```
 
 Run the script `check-core-concepts` to verify your solutions.
+
+```terminal:execute
+command: check-core-concepts
+```
 
 ## Solutions
 

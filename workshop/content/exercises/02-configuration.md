@@ -5,6 +5,9 @@ title: Initialize
 autostart: true
 ```
 
+```terminal:clear-all
+```
+
 1. Create a config map with the name `my-config` and value `confa=exvalue`.
 
     ```examiner:execute-test
@@ -44,6 +47,10 @@ autostart: true
     Then: Use the service account to create a `yo-namaste` pod with nginx `image`.
 
 Run the script `check-configuration` to verify your solutions.
+
+```terminal:execute
+command: check-core-concepts
+```
 
 ## Solutions
 

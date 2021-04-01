@@ -3,6 +3,7 @@ name: CKAD Practice
 modules:
   activate:
   - workshop-overview
+  - tips
   - exercises/01-core-concepts
   - exercises/02-configuration
   - exercises/03-multi-container-pods

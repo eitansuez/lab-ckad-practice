@@ -2,9 +2,8 @@
 modules:
   workshop-overview:
     name: Workshop Overview
-    exit_sign: Tips
-  tips:
-    name: Tips
+  preface:
+    name: Preface
     exit_sign: Start Workshop
   exercises/01-core-concepts:
     name: Core Concepts

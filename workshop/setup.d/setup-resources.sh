@@ -8,6 +8,7 @@ EOF
 cat >> ~/.bashrc << EOF
 set -o vi
 export DR="--dry-run=client -oyaml"
+complete -F __start_kubectl k
 EOF
 
 cat >> ~/.vimrc << EOF

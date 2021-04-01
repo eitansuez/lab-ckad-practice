@@ -21,3 +21,23 @@
     ```
 
 Run the script `check-core-concepts` to verify your solutions.
+
+## Solutions
+
+1. Create a Pod named `nginx`. Use `nginx` image.
+
+    ```bash
+    k run nginx --image=nginx
+    ```
+
+1. Create a pod named `hello` with image `busybox` and command `echo "Hello World"`. Make sure the pod does not restart automatically.
+
+    ```bash
+    k run hello --image=busybox --restart=Never --command -- echo "Hello World"
+    ```
+
+1. Generate a pod manifest file `mypodx.yaml` (in your current working directory). Pod name should be `mypodx` with image `redis`. Make sure you only generate the pod manifest file, you do not have to create the pod.
+
+    ```bash
+    k run mypodx --image=redis --dry-run=client -oyaml > mypodx.yaml
+    ```

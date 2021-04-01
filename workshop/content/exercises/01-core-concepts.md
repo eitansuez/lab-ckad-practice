@@ -35,7 +35,7 @@ command: check-core-concepts
 Before proceeding to the next section, delete the pods you created in this section:
 
 ```terminal:execute
-k delete pod --all
+command: k delete pod --all
 ```
 
 ## Solutions

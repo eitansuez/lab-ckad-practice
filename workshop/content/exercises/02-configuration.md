@@ -53,7 +53,7 @@ autostart: true
 Run the script `check-configuration` to verify your solutions.
 
 ```terminal:execute
-command: check-core-concepts
+command: check-configuration
 ```
 
 ## Solutions

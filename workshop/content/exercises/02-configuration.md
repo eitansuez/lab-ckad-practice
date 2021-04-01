@@ -66,10 +66,10 @@ Run the script `check-configuration` to verify your solutions.
         ```yaml
         env:
         - name: AL_USER
-        valueFrom:
+          valueFrom:
             configMapKeyRef:
-            name: al-confg
-            key: al-user
+              name: al-conf
+              key: al-user
         ```
 
         See [Use ConfigMap-defined environment variables in Pod commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#use-configmap-defined-environment-variables-in-pod-commands).

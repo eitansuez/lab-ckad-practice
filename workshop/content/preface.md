@@ -52,8 +52,10 @@ Similar to the katacoda workshop, each section provides a mechanism to validate 
 
 Try to get in the habit of doing this test-first:
 
-- run the check and see it fail
+- run the check and watch it fail
 - implement your solution
-- re-run the check and see it pass
+- re-run the check and watch it pass
 
 A script is also provided to run all checks in each section.
+
+_Hint_: you can learn how to use _kubectl_ to verify your work by studying this workshop's validation scripts (have a look inside `~/bin`).

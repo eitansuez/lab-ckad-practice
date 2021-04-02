@@ -81,23 +81,23 @@ Then: Delete the pod.
 
     1. Edit the yaml to add the [readiness http probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#http-probes), optionally adding an initial delay of a few seconds.
 
-    The final yaml should resemble the following:
+    1. The final yaml should resemble the following:
 
-    ```yaml
-    ---
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      labels:
-        run: httptest
-      name: httptest
-    spec:
-      containers:
-      - name: httptest
-        image: mccutchen/go-httpbin
-        readinessProbe:
-          httpGet:
-            path: /status/200
-            port: 8080
-          initialDelaySeconds: 5
-    ```
+        ```yaml
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            run: httptest
+          name: httptest
+        spec:
+          containers:
+          - name: httptest
+            image: mccutchen/go-httpbin
+            readinessProbe:
+              httpGet:
+                path: /status/200
+                port: 8080
+              initialDelaySeconds: 5
+        ```

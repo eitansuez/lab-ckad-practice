@@ -72,6 +72,14 @@ Run the script `check-configuration` to verify your solutions.
 command: check-configuration
 ```
 
+## Cleanup
+
+Before proceeding to the next section, delete the config maps, secrets, pods, and service accounts you created in this section:
+
+```terminal:execute
+command: k delete cm,pod,secret,sa --all
+```
+
 ## Solutions
 
 1. Create a config map with the name `my-config` and value `confa=exvalue`.

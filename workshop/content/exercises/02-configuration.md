@@ -120,10 +120,9 @@ command: k delete cm,pod,secret,sa --all
     1. Edit `secure-pod.yaml` and add to the Pod spec a securityContext section as follows:
 
         ```yaml
-        spec:
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 2000
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 2000
         ```
 
     See [Set the security context for a Pod](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).

@@ -32,7 +32,9 @@ Then: Delete the pod.
 
     1. Create a base pod manifest:
 
-    k run myredis --image=bitnami/redis --env="REDIS_PASSWORD=test" $DR > myredis.yaml
+        ```bash
+        k run myredis --image=bitnami/redis --env="REDIS_PASSWORD=test" $DR > myredis.yaml
+        ```
 
     1. Visit [configuring liveness, readiness](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) and grab a livenessProbe stanza to copy in as a starting point.
 
@@ -40,34 +42,34 @@ Then: Delete the pod.
 
     1. Your resulting pod yaml specification should resemble this:
 
-      ```yaml
-      ---
-      apiVersion: v1
-      kind: Pod
-      metadata:
-        labels:
-          run: myredis
-        name: myredis
-      spec:
-        containers:
-        - name: myredis
-          image: bitnami/redis
-          env:
-          - name: REDIS_PASSWORD
-            value: test
-          livenessProbe:
-            exec:
-              command:
-              - redis-cli
-              - PING
-            initialDelaySeconds: 5
-          readinessProbe:
-            exec:
-              command:
-              - redis-cli
-              - PING
-            initialDelaySeconds: 5
-      ```
+        ```yaml
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            run: myredis
+          name: myredis
+        spec:
+          containers:
+          - name: myredis
+            image: bitnami/redis
+            env:
+            - name: REDIS_PASSWORD
+              value: test
+            livenessProbe:
+              exec:
+                command:
+                - redis-cli
+                - PING
+              initialDelaySeconds: 5
+            readinessProbe:
+              exec:
+                command:
+                - redis-cli
+                - PING
+              initialDelaySeconds: 5
+        ```
 
 1. Create a Pod named `httptest` with image [`mccutchen/go-httpbin`](https://github.com/mccutchen/go-httpbin) and a readiness probe that checks the http endpoint of the container at path `/status/200` on port `8080`.
 

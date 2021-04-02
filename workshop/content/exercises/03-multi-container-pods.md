@@ -1,5 +1,5 @@
 
-1. Create a pod `mp-hello` with three containers, each with image `bitnami/nginx`, `bitnami/kubectl` and `bitnami/consul`, respectively. Use the command `sleep infinity` for the alpine container.
+1. Create a pod `mp-hello` with three containers, each with image `bitnami/nginx`, `bitnami/kubectl` and `bitnami/consul`, respectively. Name the container running the kubectl image `shell`.  Make the shell container run the shell command `sleep infinity`.
 
     ```examiner:execute-test
     name: mc-pod
@@ -17,7 +17,7 @@ command: k delete pod --all
 
 ## Solution
 
-1. Create a pod `mp-hello` with three containers, each with image `bitnami/nginx`, `bitnami/kubectl` and `bitnami/consul`, respectively. Use the command `sleep infinity` for the alpine container.
+1. Create a pod `mp-hello` with three containers, each with image `bitnami/nginx`, `bitnami/kubectl` and `bitnami/consul`, respectively. Name the container running the kubectl image `shell`.  Make the _shell_ container run the shell command `sleep infinity`.
 
     1. Consider first producing the Pod yaml for a single container:
 
@@ -41,9 +41,10 @@ command: k delete pod --all
             image: bitnami/nginx
           - name: shell
             image: bitnami/kubectl
-            args:
-            - sleep
-            - infinity
+            command: ["/bin/sh"]
+            args: ["-c", "sleep infinity"]
           - name: consul
             image: bitnami/consul
         ```
+
+    See [running a command in a shell](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell).

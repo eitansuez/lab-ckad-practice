@@ -17,4 +17,4 @@ def check_cmd(command, test):
 
 print("\nQuestion 1:")
 check_cmd("kubectl get po mp-hello -o jsonpath='{.spec.containers[*].image}' | grep -w kubectl | grep -w nginx | grep -w 'consul'", "Pod running 3 containers with correct images?")
-check_cmd("kubectl exec mp-hello -c $(kubectl get po mp-hello -o jsonpath='{.spec.containers[?(@.image==\"kubectl\")].name}') -- sh -c 'ps | grep -v grep | grep sleep'", "Shell pod is running sleep command?")
+check_cmd("kubectl exec mp-hello -c shell -- sh -c 'ps | grep sleep'", "Shell pod is running sleep command?")

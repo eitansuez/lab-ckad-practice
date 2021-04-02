@@ -3,4 +3,4 @@
 set -euo pipefail
 
 kubectl get po mp-hello -o jsonpath='{.spec.containers[*].image}' | grep -w kubectl | grep -w nginx | grep -w 'consul'
-kubectl exec mp-hello -c $(kubectl get po mp-hello -o jsonpath='{.spec.containers[?(@.image==\"kubectl\")].name}') -- sh -c 'ps | grep -v grep | grep sleep'
+kubectl exec mp-hello -c shell -- sh -c 'ps | grep sleep'

@@ -24,3 +24,9 @@ check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessPro
 check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q redis-cli", "readiness command correct?")
 check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q PING", "readiness command argument correct?")
 check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.initialDelaySeconds}' | grep -w -q 5", "readiness initial delay seconds correct?")
+
+
+print("\nQuestion 2:")
+
+check_cmd("k get pod httptest -ojsonpath='{.spec.containers[0].readinessProbe.httpGet}' | grep -w -q status", "is the readiness probe set?")
+check_cmd("k get pod httptest -ojsonpath='{.status.containerStatuses[0].ready}' | grep -w -q true", "is the pod ready?")

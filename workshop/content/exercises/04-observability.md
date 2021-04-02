@@ -7,19 +7,24 @@
     name: readiness-liveness-pod
     title: Is Pod configured with readiness and liveness probes?
     autostart: true
+    cascade: true
     ```
 
-2. Create a Pod named `httptest` with image `kennethreitz/httpbin` with a readiness probe that checks the http endpoint of the container at path `/status/200` on port `80`.
+1. Create a Pod named `httptest` with image [`mccutchen/go-httpbin`](https://github.com/mccutchen/go-httpbin) and a readiness probe that checks the http endpoint of the container at path `/status/200` on port `8080`.
 
-3. Create a Pod named `myenv` that runs the command `sh -c "printenv && sleep 1h"`. Use the image `bitnami/kubectl`.
+    ```examiner:execute-test
+    name: httpbin-readiness-probe
+    title: Is Pod ready?
+    cascade: true
+    ```
+
+1. Create a Pod named `myenv` that runs the command `sh -c "printenv && sleep 1h"`. Use the image `bitnami/kubectl`.
 Then: Save the logs of the pod to `myenv.log` file.
 Then: Delete the pod.
 
-4. A pod named tatooine has been created. It appears to be crashing. Fix it. The pod should be in running state. Recreate the pods if necessary.
+1. A pod named tatooine has been created. It appears to be crashing. Fix it. The pod should be in running state. Recreate the pods if necessary.
 
-5. A pod specification file is `coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
-
-6. Find the name of the pod which is using most CPU across all namespaces. Enter the name of pod in the file `high-cpu.yaml`.
+1. A pod specification file is `coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
 
 ## Solution
 
@@ -63,3 +68,34 @@ Then: Delete the pod.
               - PING
             initialDelaySeconds: 5
       ```
+
+1. Create a Pod named `httptest` with image [`mccutchen/go-httpbin`](https://github.com/mccutchen/go-httpbin) and a readiness probe that checks the http endpoint of the container at path `/status/200` on port `8080`.
+
+    1. Begin by creating the pod yaml:
+
+        ```bash
+        k run httptest --image=mccutchen/go-httpbin $DR > httpbin.yml
+        ```
+
+    1. Edit the yaml to add the [readiness http probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#http-probes), optionally adding an initial delay of a few seconds.
+
+    The final yaml should resemble the following:
+
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      labels:
+        run: httptest
+      name: httptest
+    spec:
+      containers:
+      - name: httptest
+        image: mccutchen/go-httpbin
+        readinessProbe:
+          httpGet:
+            path: /status/200
+            port: 8080
+          initialDelaySeconds: 5
+    ```

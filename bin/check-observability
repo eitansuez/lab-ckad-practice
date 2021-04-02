@@ -28,5 +28,5 @@ check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessPr
 
 print("\nQuestion 2:")
 
-check_cmd("k get pod httptest -ojsonpath='{.spec.containers[0].readinessProbe.httpGet}' | grep -w -q status", "is the readiness probe set?")
-check_cmd("k get pod httptest -ojsonpath='{.status.containerStatuses[0].ready}' | grep -w -q true", "is the pod ready?")
+check_cmd("kubectl get pod httptest -ojsonpath='{.spec.containers[0].readinessProbe.httpGet}' | grep -w -q status", "is the readiness probe set?")
+check_cmd("kubectl get pod httptest -ojsonpath='{.status.containerStatuses[0].ready}' | grep -w -q true", "is the pod ready?")

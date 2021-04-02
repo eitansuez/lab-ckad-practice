@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-k get pod httptest -ojsonpath='{.spec.containers[0].readinessProbe.httpGet}' | grep -w -q status
-k get pod httptest -ojsonpath='{.status.containerStatuses[0].ready}' | grep -w -q true
+kubectl get pod httptest -ojsonpath='{.spec.containers[0].readinessProbe.httpGet}' | grep -w -q status
+kubectl get pod httptest -ojsonpath='{.status.containerStatuses[0].ready}' | grep -w -q true

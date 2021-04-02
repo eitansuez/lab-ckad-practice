@@ -21,7 +21,9 @@ cascade: true
     title: Verify that the config map exists
     ```
 
-    Expose the value of `al-user` to a pod named `al-pod` as the environment variable name `AL_USER`. Use `redis` as the image for the pod.
+    Expose the value of `al-user` to a pod named `al-pod` as the environment variable name `AL_USER`. Use `bitnami/redis` as the image for the pod.
+
+    Note: To function, the `bitnami/redis` [requires setting the environment variable named REDIS_PASSWORD](https://github.com/bitnami/bitnami-docker-redis#setting-the-server-password-on-first-run)
 
     ```examiner:execute-test
     name: config-map-as-env
@@ -29,7 +31,7 @@ cascade: true
     cascade: true
     ```
 
-1. Create a Pod named `secure-pod`. Use the `redis` image. Run pod as user 1000 and group 2000.
+1. Create a Pod named `secure-pod`. Use the `bitnami/redis` image. Run pod as user 1000 and group 2000.
 
     ```examiner:execute-test
     name: secure-pod
@@ -37,7 +39,7 @@ cascade: true
     cascade: true
     ```
 
-1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `busybox` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
+1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `bitnami/kubectl` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
 
     ```examiner:execute-test
     name: limited-pod
@@ -49,7 +51,7 @@ cascade: true
 
     Then: Create a configmap named `db-config` with value `MYSQL_USER=k8s` and `MYSQL_DATABASE=newdb`.
 
-    Then: Create a pod named `mydb` with image `mysql:5.7` and expose all values of `db-secret` and `db-config` as environment variables to the pod.
+    Then: Create a pod named `mydb` with image `bitnami/mysql` and expose all values of `db-secret` and `db-config` as environment variables to the pod.
 
     ```examiner:execute-test
     name: conf-db-pod
@@ -59,7 +61,7 @@ cascade: true
 
 1. Create a service account named `namaste`.
 
-    Then: Use the service account to create a `yo-namaste` pod with nginx `image`.
+    Then: Use the service account to create a `yo-namaste` pod with `bitnami/nginx` image.
 
     ```examiner:execute-test
     name: conf-pod-sa
@@ -93,13 +95,15 @@ command: k delete cm,pod,secret,sa --all
     1. Create starting point pod yaml with:
 
     ```bash
-    k run al-pod --image=redis --dry-run=client -o yaml > al-pod.yaml
+    k run al-pod --image=bitnami/redis --dry-run=client -o yaml > al-pod.yaml
     ```
 
     1. Edit `al-pod.yaml` and add an `env` section (to the container specification) to configure the environment variable, as follows:
 
         ```yaml
         env:
+        - name: REDIS_PASSWORD
+          value: howdy
         - name: AL_USER
           valueFrom:
             configMapKeyRef:
@@ -109,12 +113,12 @@ command: k delete cm,pod,secret,sa --all
 
         See [Use ConfigMap-defined environment variables in Pod commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#use-configmap-defined-environment-variables-in-pod-commands).
 
-1. Create a Pod named `secure-pod`. Use the `redis` image. Run pod as user 1000 and group 2000.
+1. Create a Pod named `secure-pod`. Use the `bitnami/redis` image. Run pod as user 1000 and group 2000.
 
     1. Create starting point pod yaml with:
 
         ```bash
-        k run secure-pod --image=redis --dry-run=client -o yaml > secure-pod.yaml
+        k run secure-pod --image=bitnami/redis --dry-run=client -o yaml > secure-pod.yaml
         ```
 
     1. Edit `secure-pod.yaml` and add to the Pod spec a securityContext section as follows:
@@ -125,12 +129,23 @@ command: k delete cm,pod,secret,sa --all
           runAsGroup: 2000
         ```
 
+    1. Don't forget to add the environment variable required for the bitnami redis image:
+
+        ```yaml
+        env:
+        - name: REDIS_PASSWORD
+            value: hello-again
+        ```
+
     See [Set the security context for a Pod](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
 
-1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `busybox` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
+1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `bitnami/kubectl` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
 
     ```bash
-    k run limited-pod --image=busybox --requests=memory=100Mi --limits=memory=200Mi --dry-run=client -o yaml > limited-pod.yaml
+    k run limited-pod --image=bitnami/kubectl \
+      --requests=memory=100Mi \
+      --limits=memory=200Mi \
+      --dry-run=client -o yaml > limited-pod.yaml
     ```
 
     Alternatively..
@@ -138,7 +153,7 @@ command: k delete cm,pod,secret,sa --all
     1. Create base pod manifest:
 
         ```bash
-        k run limited-pod --image=busybox --dry-run=client -o yaml > limited-pod.yaml
+        k run limited-pod --image=bitnami/kubectl --dry-run=client -o yaml > limited-pod.yaml
         ```
 
     1. Edit manifest and add resources section to container specification:
@@ -165,12 +180,12 @@ command: k delete cm,pod,secret,sa --all
     k create cm db-config --from-literal=MYSQL_USER=k8s --from-literal=MYSQL_DATABASE=newdb
     ```
 
-    Then: Create a pod named `mydb` with image `mysql:5.7` and expose all values of `db-secret` and `db-config` as environment variables to the pod.
+    Then: Create a pod named `mydb` with image `bitnami/mysql` and expose all values of `db-secret` and `db-config` as environment variables to the pod.
 
     1. Create base pod manifest:
 
         ```bash
-        k run mydb --image=mysql:5.7 --dry-run=client -o yaml > mydb.yaml
+        k run mydb --image=bitnami/mysql --dry-run=client -o yaml > mydb.yaml
         ```
 
     1. Edit `mydb.yaml` and add an `envFrom` section (to the container specification) to configure the environment variables, as follows:
@@ -191,10 +206,10 @@ command: k delete cm,pod,secret,sa --all
     k create serviceaccount namaste
     ```
 
-    Then: Use the service account to create a `yo-namaste` pod with nginx `image`.
+    Then: Use the service account to create a `yo-namaste` pod with `bitnami/nginx` image.
 
     ```bash
-    k run yo-namaste --image=nginx --serviceaccount=namaste
+    k run yo-namaste --image=bitnami/nginx --serviceaccount=namaste
     ```
 
     Alternatively generate the base pod yaml and set the `serviceAccountName` field in the pod spec.

@@ -3,7 +3,13 @@
 
 1. Create a Pod named `myredis` with the image `bitnami/redis`. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command `redis-cli PING`.
 
-2. Create a Pod named `httptest` with image `kennethreitz/httpbin`. Define a readiness probe at path `/status/200` on port 80 of the container.
+    ```examiner:execute-test
+    name: readiness-liveness-pod
+    title: Is Pod configured with readiness and liveness probes?
+    autostart: true
+    ```
+
+2. Create a Pod named `httptest` with image `kennethreitz/httpbin` with a readiness probe that checks the http endpoint of the container at path `/status/200` on port `80`.
 
 3. Create a Pod named `myenv` that runs the command `sh -c "printenv && sleep 1h"`. Use the image `bitnami/kubectl`.
 Then: Save the logs of the pod to `myenv.log` file.

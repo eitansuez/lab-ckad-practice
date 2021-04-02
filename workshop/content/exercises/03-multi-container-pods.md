@@ -3,7 +3,7 @@
 
     ```examiner:execute-test
     name: mc-pod
-    title: Initialize
+    title: Pod runs three containers?
     autostart: true
     ```
 

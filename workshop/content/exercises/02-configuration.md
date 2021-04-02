@@ -51,9 +51,20 @@ cascade: true
 
     Then: Create a pod named `mydb` with image `mysql:5.7` and expose all values of `db-secret` and `db-config` as environment variables to the pod.
 
+    ```examiner:execute-test
+    name: conf-db-pod
+    title: Mysql Pod configured with environment variables from config map and secrets
+    cascade: true
+    ```
+
 1. Create a service account named `namaste`.
 
     Then: Use the service account to create a `yo-namaste` pod with nginx `image`.
+
+    ```examiner:execute-test
+    name: conf-pod-sa
+    title: Pod configured with service account
+    ```
 
 Run the script `check-configuration` to verify your solutions.
 

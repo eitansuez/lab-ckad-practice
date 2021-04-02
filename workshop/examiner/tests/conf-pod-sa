@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+kubectl get sa namaste
+kubectl get po yo-namaste -o jsonpath='{.spec.serviceAccountName}'  | grep -q -w 'namaste'

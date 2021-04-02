@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+
+kubectl exec mydb -- printenv | grep -q -w 'MYSQL_ROOT_PASSWORD=YoYoSecret'
+kubectl exec mydb -- printenv | grep -q -w 'MYSQL_PASSWORD=XoXoPassword'
+kubectl exec mydb -- printenv | grep -q -w 'MYSQL_USER=k8s'
+kubectl exec mydb -- printenv | grep -q -w 'MYSQL_DATABASE=newdb'

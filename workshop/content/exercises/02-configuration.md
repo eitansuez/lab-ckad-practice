@@ -134,7 +134,7 @@ command: k delete cm,pod,secret,sa --all
         ```yaml
         env:
         - name: REDIS_PASSWORD
-            value: hello-again
+          value: hello-again
         ```
 
     See [Set the security context for a Pod](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).

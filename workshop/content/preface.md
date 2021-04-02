@@ -34,6 +34,10 @@ Try it:
 command: vim mypod.yaml
 ```
 
+### Vim Tips
+
+- In situations where an errant tab makes its way into your yaml file, use `:retab`, which replaces all sequences of <Tab> with new strings of white-space using the tabstop value.
+
 ## The command line
 
 If you are comfortable with vim, vim bindings is turned on in the bash command shell (`set -o vi`).  It's often quicker to edit an existing the command instead of typing Ctl-C and having to re-type it from scratch.

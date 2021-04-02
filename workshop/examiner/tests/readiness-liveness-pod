@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.exec.command}' | grep -w -q redis-cli
+kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.exec.command}' | grep -w -q PING
+kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.initialDelaySeconds}' | grep -w -q 5
+
+kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q redis-cli
+kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q PING
+kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.initialDelaySeconds}' | grep -w -q 5

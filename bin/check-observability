@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+
+import subprocess
+
+class bcolors:
+    OKGREEN = '\033[92m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+def check_cmd(command, test):
+    s = subprocess.run(command, shell=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if s.returncode == 0:
+        print(test + f" {bcolors.OKGREEN}Passed{bcolors.ENDC}")
+    else:
+        print(test + f"{bcolors.FAIL} Failed{bcolors.ENDC}")
+
+print("\nQuestion 1:")
+
+check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.exec.command}' | grep -w -q redis-cli", "liveness command correct?")
+check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.exec.command}' | grep -w -q PING", "liveness command argument correct?")
+check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.initialDelaySeconds}' | grep -w -q 5", "liveness initial delay seconds correct?")
+
+check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q redis-cli", "readiness command correct?")
+check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q PING", "readiness command argument correct?")
+check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.initialDelaySeconds}' | grep -w -q 5", "readiness initial delay seconds correct?")

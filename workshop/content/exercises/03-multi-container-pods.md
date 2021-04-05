@@ -15,7 +15,7 @@ Before proceeding to the next section, delete the config maps, secrets, pods, an
 command: k delete pod --all
 ```
 
-## Solution
+## Solutions
 
 1. Create a pod `mp-hello` with three containers, each with image `bitnami/nginx`, `bitnami/kubectl` and `bitnami/consul`, respectively. Name the container running the kubectl image `shell`.  Make the _shell_ container run the shell command `sleep infinity`.
 

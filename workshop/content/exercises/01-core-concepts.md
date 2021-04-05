@@ -54,7 +54,7 @@ command: k delete pod --all
     k create ns frontend --dry-run=client -o yaml > my-namespace.yaml
     ```
 
-    Alternatively, use the DR environment variable as a shorthand:
+    Alternatively, use the `DR` environment variable as a shorthand:
 
     ```bash
     k create ns frontend $DR > my-namespace.yaml
@@ -64,6 +64,12 @@ command: k delete pod --all
 
     ```bash
     k run nginx --image=bitnami/nginx
+    ```
+
+    Hint:  Use the `-w` flag to see the pod status progress to running state:
+
+    ```bash
+    k get pod -w
     ```
 
 1. Create a pod named `hello` with image `bitnami/kubectl` and command `echo "Hello World"`. Make sure the pod does not restart automatically.

@@ -19,10 +19,16 @@
     ```
 
 1. Create a Pod named `myenv` that runs the command `sh -c "printenv && sleep 1h"`. Use the image `bitnami/kubectl`.
-Then: Save the logs of the pod to `myenv.log` file.
-Then: Delete the pod.
+    Then: Save the logs of the pod to `myenv.log` file.
+    Then: Delete the pod.
 
-1. A pod named tatooine has been created. It appears to be crashing. Fix it. The pod should be in running state. Recreate the pods if necessary.
+    ```examiner:execute-test
+    name: obs-env-log
+    title: Captured env pod log?
+    cascade: true
+    ```
+
+1. A pod named `tatooine` has been created. It appears to be crashing. Fix it. The pod should be in running state. Recreate the pods if necessary.
 
 1. A pod specification file is `coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
 
@@ -101,3 +107,21 @@ Then: Delete the pod.
                 port: 8080
               initialDelaySeconds: 5
         ```
+
+1. Create a Pod named `myenv` that runs the command `sh -c "printenv && sleep 1h"`. Use the image `bitnami/kubectl`.
+
+    ```bash
+    k run myenv --image=bitnami/kubectl --command -- sh -c "printenv && sleep 1h"
+    ```
+
+    Then: Save the logs of the pod to `myenv.log` file.
+
+    ```bash
+    k logs myenv > myenv.log
+    ```
+
+    Then: Delete the pod.
+
+    ```bash
+    k delete pod myenv
+    ```

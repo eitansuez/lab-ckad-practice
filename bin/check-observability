@@ -30,3 +30,7 @@ print("\nQuestion 2:")
 
 check_cmd("kubectl get pod httptest -ojsonpath='{.spec.containers[0].readinessProbe.httpGet}' | grep -w -q status", "is the readiness probe set?")
 check_cmd("kubectl get pod httptest -ojsonpath='{.status.containerStatuses[0].ready}' | grep -w -q true", "is the pod ready?")
+
+print("\nQuestion 3:")
+
+check_cmd("grep -q -w \"HOSTNAME=myenv\" myenv.log", "does log file contain output from printenv command?")

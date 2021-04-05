@@ -3,7 +3,7 @@
 
     ```examiner:execute-test
     name: make-ns-spec
-    title: Pod nginx exists
+    title: Manifest for namespace created
     cascade: true
     autostart: true
     ```

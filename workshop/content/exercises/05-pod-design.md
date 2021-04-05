@@ -21,7 +21,7 @@
     ```examiner:execute-test
     name: bespin-cj
     title: bespin CronJob running date every 5 minutes
-    autostart: true
+    cascade: true
     ```
 
 ## Cleanup

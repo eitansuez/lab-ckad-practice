@@ -24,6 +24,7 @@ check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessPro
 check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q redis-cli", "readiness command correct?")
 check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q PING", "readiness command argument correct?")
 check_cmd("kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.initialDelaySeconds}' | grep -w -q 5", "readiness initial delay seconds correct?")
+check_cmd("kubectl get po myredis -o jsonpath='{.status.containerStatuses[0].ready}' | grep -q -w 'true'", "Is Pod ready?")
 
 
 print("\nQuestion 2:")
@@ -34,3 +35,4 @@ check_cmd("kubectl get pod httptest -ojsonpath='{.status.containerStatuses[0].re
 print("\nQuestion 3:")
 
 check_cmd("grep -q -w \"HOSTNAME=myenv\" myenv.log", "does log file contain output from printenv command?")
+check_cmd("! kubectl get pod myenv", "The Pod 'myenv' should have been deleted.")

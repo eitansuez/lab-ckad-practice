@@ -9,3 +9,5 @@ kubectl get pod myredis -o jsonpath='{.spec.containers[0].livenessProbe.initialD
 kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q redis-cli
 kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.exec.command}' | grep -w -q PING
 kubectl get pod myredis -o jsonpath='{.spec.containers[0].readinessProbe.initialDelaySeconds}' | grep -w -q 5
+
+kubectl get po myredis -o jsonpath='{.status.containerStatuses[0].ready}' | grep -q -w 'true'

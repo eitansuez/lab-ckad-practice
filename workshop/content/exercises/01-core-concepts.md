@@ -1,11 +1,19 @@
 
+1. Execute a dry-run command to create, in yaml format, the resource definition for a namespace named `frontend`.  Write the yaml output to the file `my-namespace.yaml`.
+
+    ```examiner:execute-test
+    name: make-ns-spec
+    title: Pod nginx exists
+    cascade: true
+    autostart: true
+    ```
+
 1. Create a Pod named `nginx`, with container using the image `bitnami/nginx`.
 
     ```examiner:execute-test
     name: make-pod
     title: Pod nginx exists
     cascade: true
-    autostart: true
     ```
 
 1. Create a pod named `hello` with image `bitnami/kubectl` and command `echo "Hello World"`. Make sure the pod does not restart automatically.
@@ -39,6 +47,18 @@ command: k delete pod --all
 ```
 
 ## Solutions
+
+1. Execute a dry-run command to create, in yaml format, the resource definition for a namespace named `frontend`.  Write the yaml output to the file `my-namespace.yaml`.
+
+    ```bash
+    k create ns frontend --dry-run=client -o yaml > my-namespace.yaml
+    ```
+
+    Alternatively, use the DR environment variable as a shorthand:
+
+    ```bash
+    k create ns frontend $DR > my-namespace.yaml
+    ```
 
 1. Create a Pod named `nginx`, with container using the image `bitnami/nginx`.
 

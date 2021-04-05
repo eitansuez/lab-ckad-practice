@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import subprocess
-
 class bcolors:
     OKGREEN = '\033[92m'
     FAIL = '\033[91m'

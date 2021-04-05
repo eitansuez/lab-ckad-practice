@@ -28,9 +28,27 @@
     cascade: true
     ```
 
-1. A pod named `tatooine` has been created. It appears to be crashing. Fix it. The pod should be in running state. Recreate the pods if necessary.
+1. Execute the following command, which will create a pod named `tatooine`.
 
-1. A pod specification file is `coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
+    ```terminal:execute
+    command: kubectl apply -f observability/tatooine.yaml
+    ```
+
+    The pod appears to be crashing. Fix it. The pod should be in running state. Recreate the pod if necessary.
+
+    ```examiner:execute-test
+    name: obs-tatooine
+    title: Pod tatooine should be in running state
+    cascade: true
+    ```
+
+1. Review the pod specification file `observability/coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
+
+    ```examiner:execute-test
+    name: obs-coruscant
+    title: Pod coruscant should be in running state
+    cascade: true
+    ```
 
 ## Solution
 

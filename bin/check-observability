@@ -36,3 +36,10 @@ print("\nQuestion 3:")
 
 check_cmd("grep -q -w \"HOSTNAME=myenv\" myenv.log", "does log file contain output from printenv command?")
 check_cmd("! kubectl get pod myenv", "The Pod 'myenv' should have been deleted.")
+
+print("\nQuestion 4:")
+check_cmd("kubectl get po tatooine -o jsonpath='{.spec.containers[0]}' | grep -q -w 'sleep'", "Has the Pod tatooine been fixed?")
+check_cmd("kubectl get po tatooine -o jsonpath='{.status.containerStatuses[0].ready}' | grep -q -w 'true'", "Is the Pod tatooine running?")
+
+print("\nQuestion 5:")
+check_cmd("kubectl get po coruscant -o jsonpath='{.status.containerStatuses[0].ready}' | grep -q -w 'true'", "Is the Pod coruscant running?")

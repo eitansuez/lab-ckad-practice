@@ -24,6 +24,14 @@
     autostart: true
     ```
 
+## Cleanup
+
+Before proceeding to the next section, please delete deployments and cronjobs you created in this section:
+
+```terminal:execute
+command: k delete deploy,cj --all
+```
+
 ## Solutions
 
 1. Create a _Deployment_ named `hoth` that deploys four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.

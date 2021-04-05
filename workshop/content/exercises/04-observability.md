@@ -50,6 +50,14 @@
     cascade: true
     ```
 
+## Cleanup
+
+Before proceeding to the next section, please delete pods created in this section:
+
+```terminal:execute
+command: k delete pod --all
+```
+
 ## Solutions
 
 1. Create a Pod named `myredis` with the image `redis`. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command `redis-cli PING`.

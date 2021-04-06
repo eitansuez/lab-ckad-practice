@@ -18,9 +18,41 @@
     cascade: true
     ```
 
-1. Deployment `cara` is created. Expose port 80 of the deployment using NodePort on port 31888. Name the service `cara`.
+1. Setup:
 
-1. Pod and Service `geonosis` is created for you. Create a network policy `geonosis-shield` which allows only pods with label `empire=true` to access the service. Use appropriate labels.
+    Apply the deployment named `cara`:
+
+    ```terminal:execute
+    command: k deploy -f services-and-networking/cara.yaml
+    ```
+
+    _Your Task_:
+
+    Expose the deployment (which is running on port 8080) using a NodePort type service named `cara` using the service port 31888.
+
+    ```examiner:execute-test
+    name: svc-cara-nodeport
+    title: Is deployment exposed via NodePort on port 31888?
+    cascade: true
+    ```
+
+1. Setup:
+
+    Apply the pod `geonosis` and accompanying ClusterIP service:
+
+    ```terminal:execute
+    command: k apply -f services-and-networking/geonosis-*.yaml
+    ```
+
+    _Your Task_:
+
+    Create a network policy `geonosis-shield` which allows only pods with the label `empire=true` to access the service. Use appropriate labels.
+
+    ```examiner:execute-test
+    name: svc-geonosis-netpol
+    title: Is network policy in place for the geonosis service?
+    cascade: true
+    ```
 
 ## Check
 
@@ -54,4 +86,27 @@ command: k delete deploy,pod,svc --all
 
 1. Deployment `cara` is created. Expose port 80 of the deployment using NodePort on port 31888. Name the service `cara`.
 
-1. Pod and Service `geonosis` is created for you. Create a network policy `geonosis-shield` which allows only pods with label `empire=true` to access the service. Use appropriate labels.
+1. Pod and Service `geonosis` are created for you. Create a network policy `geonosis-shield` which allows only pods with the label `empire=true` to access the service. Use appropriate labels.
+
+    1. Review the documentation on the subject of [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/);
+
+    1. Draft a network policy spec (in a file named, say, `netpol.yaml`), as follows:
+
+        ```yaml
+        ---
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: geonosis-shield
+        spec:
+          podSelector:
+            matchLabels:
+              sector: arkanis
+        ingress:
+        - from:
+          - podSelector:
+              matchLabels:
+                empire: "true"
+        ```
+
+    1. Apply the network policy (`k apply -f netpol.yaml`)

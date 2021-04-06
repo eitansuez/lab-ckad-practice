@@ -16,7 +16,7 @@ spec:
     namespaces:
       security:
         policy: anyuid
-      budget: small
+      budget: medium
     applications:
       terminal:
         enabled: true

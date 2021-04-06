@@ -21,30 +21,24 @@ Your environment has been pre-configured with command completion, and a few shor
     Try it:
 
     ```terminal:execute
-    command: k run my-web-server --image=nginx $DR > mypod.yaml
+    command: k run my-web-server --image=nginx $DR | tee mypod.yaml
     ```
 
-## Editing
+- The `.vimrc` file has been pre-set with line numbers and auto-indent, and is generally yaml-friendly.
 
-The `.vimrc` file has been pre-set with line numbers and auto-indent.
+    Try it:
 
-Try it:
+    ```terminal:execute
+    command: vim mypod.yaml
+    ```
 
-```terminal:execute
-command: vim mypod.yaml
-```
+### Tips
 
-### Vim Tips
+- In situations where an errant tab makes its way into your yaml file, use `:retab`, which replaces all tab sequences with new strings of white-space using the tabstop value.
 
-- In situations where an errant tab makes its way into your yaml file, use `:retab`, which replaces all sequences of <Tab> with new strings of white-space using the tabstop value.
+- If you are comfortable with vim, vim bindings is turned on in the bash command shell (`set -o vi`).  It's often quicker to edit an existing command than to re-type it from scratch.
 
-## The command line
-
-If you are comfortable with vim, vim bindings is turned on in the bash command shell (`set -o vi`).  It's often quicker to edit an existing the command instead of typing Ctl-C and having to re-type it from scratch.
-
-## Command History
-
-The `.inputrc` file has been set for history search.  I find this to be one of the [most useful things in bash](https://coderwall.com/p/oqtj8w/the-single-most-useful-thing-in-bash).  I recommend you take advantage of it.
+- The `.inputrc` file has been set for history search.  I find this to be one of the [most useful things in bash](https://coderwall.com/p/oqtj8w/the-single-most-useful-thing-in-bash).  I recommend you take advantage of it.
 
 ## Problem validation
 

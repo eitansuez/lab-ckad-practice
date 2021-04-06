@@ -25,7 +25,8 @@ check_cmd("kubectl get services greet -o jsonpath='{.spec.type}' | grep -q -w Cl
 
 print("\nQuestion 3:")
 check_cmd("kubectl get service cara -o jsonpath='{.spec.ports[0].nodePort}' | grep -q -w 31888", "Service cara as NodePort exposed?")
-check_cmd("curl localhost:31888 --connect-timeout 2", "Service is available via NodePort?")
+# cannot curl localhost from educates environment since it runs in a pod inside the cluster
+#check_cmd("curl localhost:31888 --connect-timeout 2", "Service is available via NodePort?")
 
 print("\nQuestion 4:")
 check_cmd("kubectl get networkpolicy geonosis-shield -o jsonpath='{.spec.podSelector.matchLabels.sector}' | grep -q -w arkanis", "Network policy geonosis-shield selects correct service?")

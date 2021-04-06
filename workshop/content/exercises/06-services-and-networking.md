@@ -1,6 +1,4 @@
 
-## Under construction
-
 1. Create a pod named `ig-11` with image `bitnami/nginx` and specifying the container port 8080.
 
     ```examiner:execute-test
@@ -23,7 +21,7 @@
     Apply the deployment named `cara`:
 
     ```terminal:execute
-    command: k deploy -f services-and-networking/cara.yaml
+    command: k apply -f services-and-networking/cara.yaml
     ```
 
     _Your Task_:
@@ -38,11 +36,17 @@
 
 1. Setup:
 
-    Apply the pod `geonosis` and accompanying ClusterIP service:
+    1. Apply the pod `geonosis`:
 
-    ```terminal:execute
-    command: k apply -f services-and-networking/geonosis-*.yaml
-    ```
+        ```terminal:execute
+        command: k apply -f services-and-networking/geonosis-pod.yaml
+        ```
+
+    1. Apply the accompanying ClusterIP service by the same name:
+
+        ```terminal:execute
+        command: k apply -f services-and-networking/geonosis-svc.yaml
+        ```
 
     _Your Task_:
 
@@ -67,7 +71,7 @@ command: check-services-and-networking
 Before proceeding to the next section, please delete the deployments, pods, services you created in this section:
 
 ```terminal:execute
-command: k delete deploy,pod,svc --all
+command: k delete deploy,pod,svc,netpol --all
 ```
 
 ## Solutions
@@ -86,6 +90,10 @@ command: k delete deploy,pod,svc --all
 
 1. Deployment `cara` is created. Expose port 80 of the deployment using NodePort on port 31888. Name the service `cara`.
 
+    ```bash
+    k create svc nodeport cara --tcp=8080:8080 --node-port=31888
+    ```
+
 1. Pod and Service `geonosis` are created for you. Create a network policy `geonosis-shield` which allows only pods with the label `empire=true` to access the service. Use appropriate labels.
 
     1. Review the documentation on the subject of [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/);
@@ -102,11 +110,11 @@ command: k delete deploy,pod,svc --all
           podSelector:
             matchLabels:
               sector: arkanis
-        ingress:
-        - from:
-          - podSelector:
-              matchLabels:
-                empire: "true"
+          ingress:
+          - from:
+            - podSelector:
+                matchLabels:
+                  empire: "true"
         ```
 
     1. Apply the network policy (`k apply -f netpol.yaml`)

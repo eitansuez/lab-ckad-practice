@@ -17,6 +17,8 @@ spec:
       security:
         policy: anyuid
       budget: medium
+      secondary:
+      - name: $(session_namespace)-apps
     applications:
       terminal:
         enabled: true

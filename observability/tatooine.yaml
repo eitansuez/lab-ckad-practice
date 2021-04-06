@@ -1,3 +1,14 @@
-
-# tbd
-# 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: tatooine
+  name: tatooine
+spec:
+  containers:
+  - name: tatooine
+    image: busybox
+    args:
+    - ssssleep
+    - infinity

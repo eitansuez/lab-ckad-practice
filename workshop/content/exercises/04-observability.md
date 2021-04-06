@@ -1,6 +1,4 @@
 
-## Under construction
-
 1. Create a Pod named `myredis` with the image `bitnami/redis`. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command `redis-cli PING`.
 
     ```examiner:execute-test
@@ -171,3 +169,7 @@ command: k delete pod --all
     ```bash
     k delete pod myenv
     ```
+
+1. The pod `tatooine` appears to be crashing. Fix it. The pod should be in running state. Recreate the pod if necessary.
+
+1. Review the pod specification file `observability/coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.

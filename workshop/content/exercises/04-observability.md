@@ -172,4 +172,49 @@ command: k delete pod --all
 
 1. The pod `tatooine` appears to be crashing. Fix it. The pod should be in running state. Recreate the pod if necessary.
 
+    1. To analyze the problem, begin with:
+
+        ```bash
+        k describe pod tatooine
+        ```
+
+    1. In the `Events` section you should see the message:
+
+        ```bash
+        Error: failed to create containerd task: OCI runtime create failed: container_linux.go:370: starting container process caused: exec: "ssssleep": executable file not found in $PATH: unknown
+        ```
+
+    1. You can either edit the existing yaml file (in the `observability` folder), or grab the yaml of the applied pod:
+
+        ```bash
+        k get pod tatooine -o yaml > tatooine.yaml
+        ```
+
+    1. Edit the yaml and fix the misspelling in the command name _sleep_
+
+    1. To redeploy, first delete the pod and apply from the corrected yaml file.
+
+        ```bash
+        k delete pod tatooine
+        k apply -f tatooine.yaml
+        ```
+
 1. Review the pod specification file `observability/coruscant.yaml`. We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
+
+    1. Try to apply the pod:
+
+        ```bash
+        k apply -f observability/coruscant.yaml
+        ```
+
+        This should produce the error:
+
+        ```bash
+        error when creating "observability/coruscant.yaml": pods "coruscant" is forbidden: error looking up service account non-default-sa: serviceaccount "non-default-sa" not found
+        ```
+
+    1. To find out a valid service account name, run `k get sa`.
+
+    1. Edit the pod yaml, either remove the specified service account, or revise the service account name to `default`.
+
+    1. Apply the pod spec.

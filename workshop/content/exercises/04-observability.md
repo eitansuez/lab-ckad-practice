@@ -111,12 +111,18 @@ command: k delete pod --all
               initialDelaySeconds: 5
         ```
 
+    1. Finally, apply the yaml.
+
+        ```bash
+        k apply -f myredis.yaml
+        ```
+
 1. Create a Pod named `httptest` with image [`mccutchen/go-httpbin`](https://github.com/mccutchen/go-httpbin) and a readiness probe that checks the http endpoint of the container at path `/status/200` on port `8080`.
 
     1. Begin by creating the pod yaml:
 
         ```bash
-        k run httptest --image=mccutchen/go-httpbin $DR > httpbin.yml
+        k run httptest --image=mccutchen/go-httpbin $DR > httpbin.yaml
         ```
 
     1. Edit the yaml to add the [readiness http probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#http-probes), optionally adding an initial delay of a few seconds.
@@ -140,6 +146,12 @@ command: k delete pod --all
                 path: /status/200
                 port: 8080
               initialDelaySeconds: 5
+        ```
+
+    1. Apply the yaml.
+
+        ```bash
+        k apply -f httpbin.yaml
         ```
 
 1. Create a Pod named `myenv` that runs the command `sh -c "printenv && sleep 1h"`. Use the image `bitnami/kubectl`.

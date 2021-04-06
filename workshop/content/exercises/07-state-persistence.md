@@ -76,6 +76,12 @@ command: k delete deploy,pod,svc --all
             emptyDir: {}
         ```
 
+    1. Apply the yaml.
+
+        ```bash
+        k apply -f vader.yaml
+        ```
+
 1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`. Create a shared `hostPath` volume at `/data/dooku` named `dooku-logs` mounted at `/var/log/dooku` in both containers.
 
     1. Begin with a pod yaml spec with a single container:
@@ -119,4 +125,10 @@ command: k delete deploy,pod,svc --all
           - name: dooku-logs
             hostPath:
               path: /data/dooku
+        ```
+
+    1. Apply the yaml.
+
+        ```bash
+        k apply -f dooku.yaml
         ```

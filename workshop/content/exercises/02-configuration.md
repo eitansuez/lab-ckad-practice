@@ -96,9 +96,9 @@ command: k delete cm,pod,secret,sa --all
 
     1. Create starting point pod yaml with:
 
-    ```bash
-    k run al-pod --image=bitnami/redis --dry-run=client -o yaml > al-pod.yaml
-    ```
+        ```bash
+        k run al-pod --image=bitnami/redis --dry-run=client -o yaml > al-pod.yaml
+        ```
 
     1. Edit `al-pod.yaml` and add an `env` section (to the container specification) to configure the environment variable, as follows:
 
@@ -114,6 +114,12 @@ command: k delete cm,pod,secret,sa --all
         ```
 
         See [Use ConfigMap-defined environment variables in Pod commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#use-configmap-defined-environment-variables-in-pod-commands).
+
+    1. Finally, apply the yaml.
+
+        ```bash
+        k apply -f al-pod.yaml
+        ```
 
 1. Create a Pod named `secure-pod`. Use the `bitnami/redis` image. Run pod as user 1000 and group 2000.
 
@@ -137,6 +143,12 @@ command: k delete cm,pod,secret,sa --all
         env:
         - name: REDIS_PASSWORD
           value: hello-again
+        ```
+
+    1. Finally, apply the yaml.
+
+        ```bash
+        k apply -f secure-pod.yaml
         ```
 
     See [Set the security context for a Pod](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod).
@@ -166,6 +178,12 @@ command: k delete cm,pod,secret,sa --all
             memory: "100Mi"
           limits:
             memory: "200Mi"
+        ```
+
+    1. Finally, apply the yaml.
+
+        ```bash
+        k apply -f limited-pod.yaml
         ```
 
     See [Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory).
@@ -198,6 +216,12 @@ command: k delete cm,pod,secret,sa --all
             name: db-config
         - secretRef:
             name: db-secret
+        ```
+
+    1. Finally, apply the yaml.
+
+        ```bash
+        k apply -f mydb.yaml
         ```
 
     See [configure all key value pairs in a config map as container environment variables](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables) and [Secrets use case: as container environment variables](https://kubernetes.io/docs/concepts/configuration/secret/#use-cases).

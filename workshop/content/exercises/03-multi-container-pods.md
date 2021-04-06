@@ -55,4 +55,10 @@ command: k delete pod --all
             image: bitnami/consul
         ```
 
+    1. Finally, apply the yaml.
+
+        ```bash
+        k apply -f mp-hello.yaml
+        ```
+
     See [running a command in a shell](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell).

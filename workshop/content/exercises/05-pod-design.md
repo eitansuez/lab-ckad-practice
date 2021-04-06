@@ -24,6 +24,14 @@
     cascade: true
     ```
 
+## Check
+
+Run the script `check-pod-design` to verify your solutions.
+
+```terminal:execute
+command: check-pod-design
+```
+
 ## Cleanup
 
 Before proceeding to the next section, please delete deployments and cronjobs you created in this section:

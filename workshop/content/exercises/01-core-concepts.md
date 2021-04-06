@@ -32,6 +32,8 @@
     cascade: true
     ```
 
+## Check
+
 Run the script `check-core-concepts` to verify your solutions.
 
 ```terminal:execute

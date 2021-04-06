@@ -50,6 +50,14 @@
     cascade: true
     ```
 
+## Check
+
+Run the script `check-observability` to verify your solutions.
+
+```terminal:execute
+command: check-observability
+```
+
 ## Cleanup
 
 Before proceeding to the next section, please delete pods created in this section:

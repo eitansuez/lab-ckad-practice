@@ -68,6 +68,8 @@ cascade: true
     title: Pod configured with service account
     ```
 
+## Check
+
 Run the script `check-configuration` to verify your solutions.
 
 ```terminal:execute

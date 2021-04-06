@@ -22,9 +22,17 @@
 
 1. Pod and Service `geonosis` is created for you. Create a network policy `geonosis-shield` which allows only pods with label `empire=true` to access the service. Use appropriate labels.
 
+## Check
+
+Run the script `check-services-and-networking` to verify your solutions.
+
+```terminal:execute
+command: check-services-and-networking
+```
+
 ## Cleanup
 
-Before proceeding to the next section, please delete the deployments servics you created in this section:
+Before proceeding to the next section, please delete the deployments, pods, services you created in this section:
 
 ```terminal:execute
 command: k delete deploy,pod,svc --all

@@ -7,6 +7,14 @@
     autostart: true
     ```
 
+## Check
+
+Run the script `check-multi-container-pods` to verify your solutions.
+
+```terminal:execute
+command: check-multi-container-pods
+```
+
 ## Cleanup
 
 Before proceeding to the next section, delete the config maps, secrets, pods, and service accounts you created in this section:

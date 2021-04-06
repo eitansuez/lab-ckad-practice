@@ -10,11 +10,41 @@
     cascade: true
     ```
 
-1. The Deployment `yavin` has been upgraded, but the new Pods are not getting created. Rollback the Deployment `yavin` so that the Pods are working again.
+1. Setup:
 
-    Then: Export `yavin` deployment spec in JSON to the file `yavin.json`.
+    1. Apply the deployment named `yavin`:
+
+        ```terminal:execute
+        command: k apply -f pod-design/yavin.yaml
+        ```
+
+    1. Rollout an update to your deployment:
+
+        ```terminal:execute
+        command: k apply -f pod-design/yavin-update.yaml
+        ```
+
+    1. Inspect the state of the new pods.  There is a problem.
+
+    _Your tasks_:
+
+    - Rollback the Deployment `yavin` so that the Pods are working again.
+
+    - Export `yavin` deployment spec in JSON to the file `yavin.json`.
+
+    ```examiner:execute-test
+    name: deploy-yavin-rollback
+    title: Has the yavin deployment been rolled back?
+    cascade: true
+    ```
 
 1. The Deployment `naboo` has been created.  Make sure the replicas autoscale with minimum 2 and maximum 5 when at 80% CPU.  Use `naboo` as the name of HPA resource.
+
+    ```examiner:execute-test
+    name: deploy-naboo-autoscale
+    title: Has the naboo deployment been configured for autoscaling?
+    cascade: true
+    ```
 
 1. Create a Cron job named `bespin` that runs the command `date` using the `bitnami/kubectl` image every 5 minutes (`*/5 * * * *`).
 
@@ -50,9 +80,21 @@ command: k delete deploy,cj --all
 
 1. The Deployment `yavin` has been upgraded, but the new Pods are not getting created. Rollback the Deployment `yavin` so that the Pods are working again.
 
+    ```bash
+    kubectl rollout undo deploy yavin
+    ```
+
     Then: Export `yavin` deployment spec in JSON to the file `yavin.json`.
 
+    ```bash
+    kubectl get deploy yavin -o json > yavin.json
+    ```
+
 1. The Deployment `naboo` has been created.  Make sure the replicas autoscale with minimum 2 and maximum 5 when at 80% CPU.  Use `naboo` as the name of HPA resource.
+
+    ```bash
+    kubectl autoscale deploy naboo --name=naboo --min=2 --max=5 --cpu-percent=80
+    ```
 
 1. Create a Cron job named `bespin` that runs the command `date` using the `bitnami/kubectl` image every 5 minutes (`*/5 * * * *`).
 

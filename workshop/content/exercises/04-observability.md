@@ -4,7 +4,7 @@
 1. Create a Pod named `myredis` with the image `bitnami/redis`. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command `redis-cli PING`.
 
     ```examiner:execute-test
-    name: readiness-liveness-pod
+    name: obs-readiness-liveness-pod
     title: Is Pod configured with readiness and liveness probes?
     autostart: true
     cascade: true
@@ -13,7 +13,7 @@
 1. Create a Pod named `httptest` with image [`mccutchen/go-httpbin`](https://github.com/mccutchen/go-httpbin) and a readiness probe that checks the http endpoint of the container at path `/status/200` on port `8080`.
 
     ```examiner:execute-test
-    name: httpbin-readiness-probe
+    name: obs-httpbin-readiness-probe
     title: Is Pod ready?
     cascade: true
     ```

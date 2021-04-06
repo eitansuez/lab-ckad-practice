@@ -1,6 +1,6 @@
 
 ```examiner:execute-test
-name: config-setup
+name: conf-setup
 title: Initialize
 autostart: true
 cascade: true
@@ -9,7 +9,7 @@ cascade: true
 1. Create a config map with the name `my-config` and value `confa=exvalue`.
 
     ```examiner:execute-test
-    name: config-map
+    name: conf-config-map
     title: ConfigMap my-config exists
     cascade: true
     ```
@@ -26,7 +26,7 @@ cascade: true
     Note: To function, the `bitnami/redis` [requires setting the environment variable named REDIS_PASSWORD](https://github.com/bitnami/bitnami-docker-redis#setting-the-server-password-on-first-run)
 
     ```examiner:execute-test
-    name: config-map-as-env
+    name: conf-config-map-as-env
     title: Pod has environment variable with value from config map entry
     cascade: true
     ```
@@ -34,7 +34,7 @@ cascade: true
 1. Create a Pod named `secure-pod`. Use the `bitnami/redis` image. Run pod as user 1000 and group 2000.
 
     ```examiner:execute-test
-    name: secure-pod
+    name: conf-secure-pod
     title: Pod runs as user 1000 and group 2000
     cascade: true
     ```
@@ -42,7 +42,7 @@ cascade: true
 1. Create a pod manifest file `limited-pod.yaml` with name `limited-pod` and `bitnami/kubectl` image. Set memory request at `100Mi` and limit at `200Mi`. You do not need to create the pod.
 
     ```examiner:execute-test
-    name: limited-pod
+    name: conf-limited-pod
     title: Pod yaml has specified resource memory requests and limits
     cascade: true
     ```

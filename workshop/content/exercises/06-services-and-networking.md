@@ -4,7 +4,7 @@
 1. Create a pod named `ig-11` with image `bitnami/nginx` and specifying the container port 8080.
 
     ```examiner:execute-test
-    name: make-pod-ig11
+    name: svc-pod-ig11
     title: Pod ig-11 running, specifies container port 8080?
     autostart: true
     cascade: true
@@ -13,7 +13,7 @@
 1. Create a Cluster IP service for pod `ig-11` named `greet`. Map service port 8080 to container port 8080.
 
     ```examiner:execute-test
-    name: make-clusterip-greet
+    name: svc-clusterip-greet
     title: ClusterIP service exposes pod ig-11 on port 8080?
     cascade: true
     ```

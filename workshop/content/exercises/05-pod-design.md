@@ -4,7 +4,7 @@
 1. Create a _Deployment_ named `hoth` with four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 
     ```examiner:execute-test
-    name: hoth-deploy
+    name: deploy-hoth
     title: hoth Deployment with 4 replicas of apache
     autostart: true
     cascade: true
@@ -19,7 +19,7 @@
 1. Create a Cron job named `bespin` that runs the command `date` using the `bitnami/kubectl` image every 5 minutes (`*/5 * * * *`).
 
     ```examiner:execute-test
-    name: bespin-cj
+    name: deploy-bespin-cj
     title: bespin CronJob running date every 5 minutes
     cascade: true
     ```

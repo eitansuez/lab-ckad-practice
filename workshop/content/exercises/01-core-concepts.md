@@ -2,7 +2,7 @@
 1. Execute a dry-run command to create, in yaml format, the resource definition for a namespace named `frontend`.  Write the yaml output to the file `my-namespace.yaml`.
 
     ```examiner:execute-test
-    name: make-ns-spec
+    name: core-ns-spec
     title: Manifest for namespace created
     cascade: true
     autostart: true
@@ -11,7 +11,7 @@
 1. Create a Pod named `nginx`, with container using the image `bitnami/nginx`.
 
     ```examiner:execute-test
-    name: make-pod
+    name: core-make-pod
     title: Pod nginx exists
     cascade: true
     ```
@@ -19,7 +19,7 @@
 1. Create a pod named `hello` with image `bitnami/kubectl` and command `echo "Hello World"`. Make sure the pod does not restart automatically.
 
     ```examiner:execute-test
-    name: hello-world-pod
+    name: core-hello-world-pod
     title: Pod emits greeting
     cascade: true
     ```
@@ -27,7 +27,7 @@
 1. Generate a pod manifest file `mypodx.yaml` (in your current working directory). Pod name should be `mypodx` with image `redis`. Make sure you only generate the pod manifest file, you do not have to create the pod.
 
     ```examiner:execute-test
-    name: redis-pod-manifest
+    name: core-redis-pod-manifest
     title: Pod yaml has correct name and image
     cascade: true
     ```

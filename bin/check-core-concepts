@@ -20,8 +20,8 @@ check_cmd("kubectl apply -f ~/my-namespace.yaml --dry-run=client -o jsonpath='{.
 check_cmd("kubectl apply -f ~/my-namespace.yaml --dry-run=client -o jsonpath='{.metadata.name}' | grep -q -w frontend", "Resource definition for name is frontend?")
 
 print("\nQuestion 2:")
-check_cmd("kubectl get pod nginx", "Session namespace has pod nginx?")
-check_cmd("kubectl get po nginx -o jsonpath='{.spec.containers[*].image}' | grep -q -w nginx", "Pod nginx is using image nginx?")
+check_cmd("kubectl get pod nginx -n \"${SESSION_NAMESPACE}-apps\"", "Session namespace has pod nginx?")
+check_cmd("kubectl get po nginx -n \"${SESSION_NAMESPACE}-apps\" -o jsonpath='{.spec.containers[*].image}' | grep -q -w nginx", "Pod nginx is using image nginx?")
 
 print("\nQuestion 3:")
 check_cmd("kubectl get pod hello | grep -q -w Completed", "Pod hello is completed and not restarting?")

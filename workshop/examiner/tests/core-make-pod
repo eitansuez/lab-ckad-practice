@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-kubectl get pod nginx
-kubectl get po nginx -o jsonpath='{.spec.containers[*].image}' | grep -q -w nginx
+kubectl get pod nginx -n "${SESSION_NAMESPACE}-apps"
+kubectl get po nginx -n "${SESSION_NAMESPACE}-apps" -o jsonpath='{.spec.containers[*].image}' | grep -q -w nginx

@@ -8,7 +8,7 @@
     autostart: true
     ```
 
-1. Create a Pod named `nginx`, with container using the image `bitnami/nginx`.
+1. Create a Pod named `nginx` in the namespace `{{session_namespace}}-apps`, using the image `bitnami/nginx`.
 
     ```examiner:execute-test
     name: core-make-pod
@@ -48,6 +48,12 @@ Before proceeding to the next section, delete the pods you created in this secti
 command: k delete pod --all
 ```
 
+..and the one created in the separate namespace:
+
+```terminal:execute
+command: k delete pod --all --namespace {{session_namespace}}-apps
+```
+
 ## Solutions
 
 1. Execute a dry-run command to create, in yaml format, the resource definition for a namespace named `frontend`.  Write the yaml output to the file `my-namespace.yaml`.
@@ -62,16 +68,16 @@ command: k delete pod --all
     k create ns frontend $DR > my-namespace.yaml
     ```
 
-1. Create a Pod named `nginx`, with container using the image `bitnami/nginx`.
+1. Create a Pod named `nginx` in the namespace `{{session_namespace}}-apps`, using the image `bitnami/nginx`.
 
     ```bash
-    k run nginx --image=bitnami/nginx
+    k run nginx --image=bitnami/nginx -n {{session_namespace}}-apps
     ```
 
     Hint:  Use the `-w` flag to see the pod status progress to running state:
 
     ```bash
-    k get pod -w
+    k get pod -n {{session_namespace}}-apps -w
     ```
 
 1. Create a pod named `hello` with image `bitnami/kubectl` and command `echo "Hello World"`. Make sure the pod does not restart automatically.

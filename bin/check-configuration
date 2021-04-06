@@ -21,7 +21,7 @@ check_cmd("kubectl get cm my-config", "Configmap my-config exists in session nam
 check_cmd("kubectl get cm my-config -o jsonpath='{.data.confa}' | grep -q -w exvalue", "Configmap my-config contains correct key-value?")
 
 print("\nQuestion 2:")
-check_cmd("kubectl exec al-pod -- printenv | grep -q -w 'AL_USER=liptan'", "Environment variable contains correct value?")
+check_cmd("kubectl exec al-pod -- printenv | grep -q -w 'AL_USER=eitan'", "Environment variable contains correct value?")
 
 print("\nQuestion 3:")
 check_cmd("kubectl exec secure-pod -- id -u  | grep -q -w 1000", "Pod running with correct user?")

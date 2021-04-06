@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-kubectl exec al-pod -- printenv | grep -q -w 'AL_USER=liptan'
+kubectl exec al-pod -- printenv | grep -q -w 'AL_USER=eitan'

@@ -34,7 +34,7 @@ check_cmd("kubectl get pod httptest -ojsonpath='{.status.containerStatuses[0].re
 
 print("\nQuestion 3:")
 
-check_cmd("grep -q -w \"HOSTNAME=myenv\" myenv.log", "does log file contain output from printenv command?")
+check_cmd("grep -q -w \"HOSTNAME=myenv\" ~/myenv.log", "does log file contain output from printenv command?")
 check_cmd("! kubectl get pod myenv", "The Pod 'myenv' should have been deleted.")
 
 print("\nQuestion 4:")

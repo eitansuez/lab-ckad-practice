@@ -27,7 +27,7 @@
 Before proceeding to the next section, please delete the deployments servics you created in this section:
 
 ```terminal:execute
-command: k delete deploy,svc --all
+command: k delete deploy,pod,svc --all
 ```
 
 ## Solutions

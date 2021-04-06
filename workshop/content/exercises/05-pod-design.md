@@ -1,7 +1,7 @@
 
 ## Under construction
 
-1. Create a _Deployment_ named `hoth` that deploys four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
+1. Create a _Deployment_ named `hoth` with four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 
     ```examiner:execute-test
     name: hoth-deploy
@@ -34,7 +34,7 @@ command: k delete deploy,cj --all
 
 ## Solutions
 
-1. Create a _Deployment_ named `hoth` that deploys four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
+1. Create a _Deployment_ named `hoth` with four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 
     ```bash
     k create deploy hoth --image=bitnami/apache:2.4.46 --replicas=4 

@@ -18,13 +18,16 @@
 
     Then: Create a pod `sidious` with image `bitnami/mysql` and mount the PVC at `/var/lib/mysql` using volume name `sidious-vol`. Also, set the environment variable `MYSQL_ROOT_PASSWORD=my-secret-pw`.
 
-1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`. Create a shared `hostPath` volume at `/data/dooku` named `dooku-logs` mounted at `/var/log/dooku` in both containers.
+1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`.
+   Create an `emptyDir` scratch volume named `dooku-logs` mounted at `/var/log/dooku` in both containers.
 
     ```examiner:execute-test
     name: vol-pod-dooku
     title: Pod dooku running with two containers and a shared volume mount?
     cascade: true
     ```
+
+    _Note_: Be sure to review the [`hostPath`](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) and other volume types as you prepare for the exam.
 
 ## Check
 
@@ -82,7 +85,8 @@ command: k delete deploy,pod,svc --all
         k apply -f vader.yaml
         ```
 
-1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`. Create a shared `hostPath` volume at `/data/dooku` named `dooku-logs` mounted at `/var/log/dooku` in both containers.
+1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`.
+   Create an `emptyDir` scratch volume named `dooku-logs` mounted at `/var/log/dooku` in both containers.
 
     1. Begin with a pod yaml spec with a single container:
 
@@ -94,7 +98,7 @@ command: k delete deploy,pod,svc --all
 
     1. To each container spec, add the `volumeMounts` section.
 
-    1. Finally, on the pod spec, add the `volumes` section defining the `dooku-logs` volume of type `hostPath`.
+    1. Finally, on the pod spec, add the `volumes` section defining the `dooku-logs` volume of type `emptyDir`.
 
     1. The final yaml should resemble the following
 
@@ -123,8 +127,7 @@ command: k delete deploy,pod,svc --all
               mountPath: /var/log/dooku
           volumes:
           - name: dooku-logs
-            hostPath:
-              path: /data/dooku
+            emptyDir: {}
         ```
 
     1. Apply the yaml.

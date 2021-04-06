@@ -16,9 +16,15 @@
 
     Then: Create a persistent volume claim `sidious-pvc` and consume the PV `sidious-pv`.
 
-    Then: Create a pod `sidious` with image `alpine/mysql` and mount the PVC at `/var/lib/mysql` using volume name `sidious-vol`. Also, set the environment variable `MYSQL_ROOT_PASSWORD=my-secret-pw`.
+    Then: Create a pod `sidious` with image `bitnami/mysql` and mount the PVC at `/var/lib/mysql` using volume name `sidious-vol`. Also, set the environment variable `MYSQL_ROOT_PASSWORD=my-secret-pw`.
 
-1. Create a pod `dooku` with two containers using the images `alpine/redis` and `alpine/nginx`. Create a shared `hostPath` volume at `/data/dooku` named `dooku-logs` mounted at `/var/log/dooku` in both containers.
+1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`. Create a shared `hostPath` volume at `/data/dooku` named `dooku-logs` mounted at `/var/log/dooku` in both containers.
+
+    ```examiner:execute-test
+    name: vol-pod-dooku
+    title: Pod dooku running with two containers and a shared volume mount?
+    cascade: true
+    ```
 
 ## Check
 
@@ -55,17 +61,62 @@ command: k delete deploy,pod,svc --all
         apiVersion: v1
         kind: Pod
         metadata:
-        labels:
+          name: vader
+          labels:
             run: vader
-        name: vader
         spec:
-        containers:
-        - image: bitnami/nginx
-            name: vader
+          containers:
+          - name: vader
+            image: bitnami/nginx
             volumeMounts:
-            - mountPath: /var/www/html
-            name: vader-vol
-        volumes:
-        - name: vader-vol
+            - name: vader-vol
+              mountPath: /var/www/html
+          volumes:
+          - name: vader-vol
             emptyDir: {}
+        ```
+
+1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`. Create a shared `hostPath` volume at `/data/dooku` named `dooku-logs` mounted at `/var/log/dooku` in both containers.
+
+    1. Begin with a pod yaml spec with a single container:
+
+        ```bash
+        k run dooku --image=bitnami/nginx $DR > dooku.yaml
+        ```
+
+    1. Add the spec for the second (redis) container (with env var REDIS_PASSWORD).
+
+    1. To each container spec, add the `volumeMounts` section.
+
+    1. Finally, on the pod spec, add the `volumes` section defining the `dooku-logs` volume of type `hostPath`.
+
+    1. The final yaml should resemble the following
+
+        ```yaml
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            run: dooku
+          name: dooku
+        spec:
+          containers:
+          - name: nginx
+            image: bitnami/nginx
+            volumeMounts:
+            - name: dooku-logs
+              mountPath: /var/log/dooku
+          - name: redis
+            image: bitnami/redis
+            env:
+            - name: REDIS_PASSWORD
+              value: x
+            volumeMounts:
+            - name: dooku-logs
+              mountPath: /var/log/dooku
+          volumes:
+          - name: dooku-logs
+            hostPath:
+              path: /data/dooku
         ```

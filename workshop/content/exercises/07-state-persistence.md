@@ -8,17 +8,13 @@
     cascade: true
     ```
 
-1. We created a persistent volume `maul-pv` and a persistent volume claim `maul-pvc`. But our PVC is not binding to the PV. Fix the issue. You may need to delete and recreate the PVC.
+1. **Under construction**: We created a persistent volume `maul-pv` and a persistent volume claim `maul-pvc`. But our PVC is not binding to the PV. Fix the issue. You may need to delete and recreate the PVC.
 
-    **Under construction**
-
-1. Create a persistent volume named `sidious-pv` of size `200Mi` at `/data/mysql` on host. Use manual storageClassName and ReadWriteOnce access mode.
+1. **Under construction** Create a persistent volume named `sidious-pv` of size `200Mi` at `/data/mysql` on host. Use manual storageClassName and ReadWriteOnce access mode.
 
     Then: Create a persistent volume claim `sidious-pvc` and consume the PV `sidious-pv`.
 
     Then: Create a pod `sidious` with image `bitnami/mysql` and mount the PVC at `/var/lib/mysql` using volume name `sidious-vol`. Also, set the environment variable `MYSQL_ROOT_PASSWORD=my-secret-pw`.
-
-    **Under construction**
 
 1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`.
    Create an `emptyDir` scratch volume named `dooku-logs` mounted at `/var/log/dooku` in both containers.

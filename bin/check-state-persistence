@@ -42,5 +42,5 @@ check_cmd("kubectl get po dooku -o jsonpath='{.spec.volumes[?(@.name==\"dooku-lo
 check_cmd("kubectl get po dooku -o jsonpath='{.status.phase}' | grep -q -w 'Running'", "Pod is running?")
 
 print("\nQuestion 5:")
-check_cmd("k exec my-web-server -it -- cat /etc/app-data/city | grep -q -w Paris")
-check_cmd("k exec my-web-server -it -- cat /etc/app-data/pastry | grep -q -w \"Baba au rhum\"")
+check_cmd("kubectl exec my-web-server -it -- cat /etc/app-data/city | grep -q -w Paris", "Is the configmap mounted at the right path?")
+check_cmd("kubectl exec my-web-server -it -- cat /etc/app-data/pastry | grep -q -w \"Baba au rhum\"", "Does the configmap include both literals?")

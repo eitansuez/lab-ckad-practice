@@ -24,10 +24,14 @@ check_cmd("kubectl exec ig-11 -- curl greet:8080 --connect-timeout 1", "Pod ig-1
 check_cmd("kubectl get services greet -o jsonpath='{.spec.type}' | grep -q -w ClusterIP", "Service greet is ClusterIP type?")
 
 print("\nQuestion 3:")
+check_cmd("k get ingress greet-ingress", "Does ingress greet-ingress exist?")
+check_cmd("curl ${INGRESS_PROTOCOL}:://${SESSION_NAMESPACE}-greet.${INGRESS_DOMAIN}", "Is ingress endpoint reachable?")
+
+print("\nQuestion 4:")
 check_cmd("kubectl get service cara -o jsonpath='{.spec.ports[0].nodePort}' | grep -q -w 31888", "Service cara as NodePort exposed?")
 # cannot curl localhost from educates environment since it runs in a pod inside the cluster
 #check_cmd("curl localhost:31888 --connect-timeout 2", "Service is available via NodePort?")
 
-print("\nQuestion 4:")
+print("\nQuestion 5:")
 check_cmd("kubectl get networkpolicy geonosis-shield -o jsonpath='{.spec.podSelector.matchLabels.sector}' | grep -q -w arkanis", "Network policy geonosis-shield selects correct service?")
 check_cmd("kubectl get networkpolicy geonosis-shield -o jsonpath='{.spec.ingress[0].from[0].podSelector.matchLabels.empire}' | grep -q -w true", "Network policy geonosis-shield accpets connections from correct pods only?")

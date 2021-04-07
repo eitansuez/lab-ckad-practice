@@ -8,11 +8,21 @@
     cascade: true
     ```
 
-1. Create a Cluster IP service for pod `ig-11` named `greet`. Map service port 8080 to container port 8080.
+1. Create a ClusterIP service for pod `ig-11` named `greet`. Map service port 8080 to container port 8080.
 
     ```examiner:execute-test
     name: svc-clusterip-greet
     title: ClusterIP service exposes pod ig-11 on port 8080?
+    cascade: true
+    ```
+
+1. Expose the greet service to the outside world via an [ingress resource](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+  Use [name-based virtual hosting](https://kubernetes.io/docs/concepts/services-networking/ingress/#name-based-virtual-hosting).
+  Name the ingress `greet-ingress`. Set the `host` to `{{session-namespace}}-greet.{{ingress_domain}}`.  The ingress backend should map to your internal `greet` ClusterIP service running on port 8080.
+
+    ```examiner:execute-test
+    name: svc-greet-ingress
+    title: Is deployment exposed via NodePort on port 31888?
     cascade: true
     ```
 
@@ -87,6 +97,38 @@ command: k delete deploy,pod,svc,netpol --all
     ```bash
     k expose pod ig-11 --port=8080 --target-port=8080 --name=greet
     ```
+
+1. Expose the greet service to the outside world via an [ingress resource](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+  Use [name-based virtual hosting](https://kubernetes.io/docs/concepts/services-networking/ingress/#name-based-virtual-hosting).
+  Name the ingress `greet-ingress`. Set the `host` to `{{session-namespace}}-greet.{{ingress_domain}}`.  The ingress backend should map to your internal `greet` ClusterIP service running on port 8080.
+
+    1. Draft an ingress specification with the specified parameters, as follows (to a file named, say, `ingress.yaml`).
+
+        ```yaml
+        ---
+        apiVersion: networking.k8s.io/v1
+        kind: Ingress
+        metadata:
+        name: greet-ingress
+        spec:
+        rules:
+        - host: {{session_namespace}}-greet.{{ingress_domain}}
+            http:
+            paths:
+            - pathType: Prefix
+                path: "/"
+                backend:
+                service:
+                    name: greet
+                    port:
+                    number: 8080
+        ```
+
+    1. Apply the resource.
+
+        ```bash
+        k apply -f ingress.yaml
+        ```
 
 1. Deployment `cara` is created. Expose port 80 of the deployment using NodePort on port 31888. Name the service `cara`.
 

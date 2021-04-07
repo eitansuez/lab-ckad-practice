@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+k exec my-web-server -it -- cat /etc/app-data/city | grep -q -w Paris
+k exec my-web-server -it -- cat /etc/app-data/pastry | grep -q -w "Baba au rhum"

@@ -31,6 +31,14 @@
 
     _Note_: Be sure to review the [`hostPath`](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) and other volume types as you prepare for the exam.
 
+1. Create a ConfigMap named `my-data` with these two sets of key-value pairs: `city: Paris`, and `pastry: Baba au rhum`.  Create a Pod named `my-web-server` using the image `bitnami/nginx` that mounts the ConfigMap as a volume at `/etc/app-data` (the volume name is of your choosing).
+
+    ```examiner:execute-test
+    name: vol-pod-cm
+    title: Pod my-web-server running with ConfigMap mounted at `/etc/app-data`
+    cascade: true
+    ```
+
 ## Check
 
 Run the script `check-state-persistence` to verify your solutions.
@@ -44,7 +52,7 @@ command: check-state-persistence
 Before proceeding to the next section, please delete the resources you created in this section:
 
 ```terminal:execute
-command: k delete deploy,pod,svc --all
+command: k delete deploy,pod,svc,cm --all
 ```
 
 ## Solutions
@@ -136,4 +144,55 @@ command: k delete deploy,pod,svc --all
 
         ```bash
         k apply -f dooku.yaml
+        ```
+
+1. Create a ConfigMap named `my-data` with these two sets of key-value pairs: `city: Paris`, and `pastry: Baba au rhum`.  Create a Pod named `my-web-server` using the image `bitnami/nginx` that mounts the ConfigMap as a volume at `/etc/app-data` (the volume name is of your choosing).
+
+    1. Create the ConfigMap.
+
+        ```bash
+        k create cm my-data --from-literal=city=Paris --from-literal=pastry="Baba au rhum"
+        ```
+
+    1. Verify the ConfigMap was set properly.
+
+        ```bash
+        k get cm my-data -o jsonpath='{.data}'
+        ```
+
+    1. Create a base yaml file for the pod spec.
+
+        ```bash
+        k run my-web-server --image=bitnami/nginx $DR > my-web-server.yaml
+        ```
+
+    1. Edit the yaml file and add a volume for your ConfigMap and a volume mount for your container.  See [populate a volume with data stored in a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
+
+        The final spec should be similar to the following.
+
+        ```yaml
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            run: my-web-server
+          name: my-web-server
+        spec:
+          volumes:
+          - name: my-data-volume
+            configMap:
+              name: my-data
+          containers:
+          - name: my-web-server
+            image: bitnami/nginx
+            volumeMounts:
+            - name: my-data-volume
+              mountPath: /etc/app-data
+        ```
+
+    1. Apply the yaml.
+
+        ```bash
+        k apply -f my-web-server.yaml 
         ```

@@ -41,3 +41,6 @@ check_cmd("kubectl get po dooku -o jsonpath='{.spec.containers[1].volumeMounts[?
 check_cmd("kubectl get po dooku -o jsonpath='{.spec.volumes[?(@.name==\"dooku-logs\")].emptyDir}' | grep -q -w '{}'", "Volume dooku-logs uses emptyDir?")
 check_cmd("kubectl get po dooku -o jsonpath='{.status.phase}' | grep -q -w 'Running'", "Pod is running?")
 
+print("\nQuestion 5:")
+check_cmd("k exec my-web-server -it -- cat /etc/app-data/city | grep -q -w Paris")
+check_cmd("k exec my-web-server -it -- cat /etc/app-data/pastry | grep -q -w \"Baba au rhum\"")

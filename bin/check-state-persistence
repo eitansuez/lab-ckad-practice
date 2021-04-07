@@ -22,17 +22,6 @@ check_cmd("kubectl get pod vader -o jsonpath='{.spec.containers[0].image}' | gre
 check_cmd("kubectl get pod vader -o jsonpath='{.spec.containers[0].volumeMounts[?(@.name==\"vader-vol\")].mountPath}' | grep -q -w '/var/www/html'", "Volume is mounted at correct path?")
 
 print("\nQuestion 2:")
-check_cmd("kubectl get pvc maul-pvc -o jsonpath='{.status.phase}' | grep -q -w Bound", "PVC maul-pvc is successfully bound?")
-
-print("\nQuestion 3:")
-check_cmd("kubectl get pv sidious-pv -o jsonpath='{.spec.accessModes[0]}' | grep -q -w ReadWriteOnce", "PV sidious-pv has correct access modes?")
-check_cmd("kubectl get pv sidious-pv -o jsonpath='{.spec.capacity.storage}' | grep -q -w 200Mi", "PV sidious-pv has correct storage?")
-check_cmd("kubectl get pvc sidious-pvc -o jsonpath='{.status.phase}' | grep -q -w Bound", "PVC sidious-pvc is bound?")
-check_cmd("kubectl get po sidious -o jsonpath='{.spec.containers[0].volumeMounts[?(@.name==\"sidious-vol\")].mountPath}' | grep -q -w '/var/lib/mysql'", "Volume sidious-vol is correctly mounted?")
-check_cmd("kubectl get po sidious -o jsonpath='{.spec.volumes[?(@.name==\"sidious-vol\")].persistentVolumeClaim.claimName}' | grep -q -w 'sidious-pvc'", "Volume sidious-vol is using sidious-pvc?")
-check_cmd("kubectl get po sidious -o jsonpath='{.status.phase}' | grep -q -w 'Running'", "Pod is running?")
-
-print("\nQuestion 4:")
 check_cmd("kubectl get po dooku -o jsonpath='{.spec.containers[0].volumeMounts[?(@.name==\"dooku-logs\")].mountPath}' | grep -q -w '/var/log/dooku'", "Volume dooku-logs is mounted correctly?")
 check_cmd("kubectl get po dooku -o jsonpath='{.spec.containers[1].volumeMounts[?(@.name==\"dooku-logs\")].mountPath}' | grep -q -w '/var/log/dooku'", "Volume dooku-logs is mounted correctly?")
 # can't do hostpath
@@ -41,6 +30,6 @@ check_cmd("kubectl get po dooku -o jsonpath='{.spec.containers[1].volumeMounts[?
 check_cmd("kubectl get po dooku -o jsonpath='{.spec.volumes[?(@.name==\"dooku-logs\")].emptyDir}' | grep -q -w '{}'", "Volume dooku-logs uses emptyDir?")
 check_cmd("kubectl get po dooku -o jsonpath='{.status.phase}' | grep -q -w 'Running'", "Pod is running?")
 
-print("\nQuestion 5:")
+print("\nQuestion 3:")
 check_cmd("kubectl exec my-web-server -it -- cat /etc/app-data/city | grep -q -w Paris", "Is the configmap mounted at the right path?")
 check_cmd("kubectl exec my-web-server -it -- cat /etc/app-data/pastry | grep -q -w \"Baba au rhum\"", "Does the configmap include both literals?")

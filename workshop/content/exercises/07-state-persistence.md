@@ -8,14 +8,6 @@
     cascade: true
     ```
 
-1. **Under construction**: We created a persistent volume `maul-pv` and a persistent volume claim `maul-pvc`. But our PVC is not binding to the PV. Fix the issue. You may need to delete and recreate the PVC.
-
-1. **Under construction** Create a persistent volume named `sidious-pv` of size `200Mi` at `/data/mysql` on host. Use manual storageClassName and ReadWriteOnce access mode.
-
-    Then: Create a persistent volume claim `sidious-pvc` and consume the PV `sidious-pv`.
-
-    Then: Create a pod `sidious` with image `bitnami/mysql` and mount the PVC at `/var/lib/mysql` using volume name `sidious-vol`. Also, set the environment variable `MYSQL_ROOT_PASSWORD=my-secret-pw`.
-
 1. Create a pod `dooku` with two containers using the images `bitnami/redis` and `bitnami/nginx`.
    Create an `emptyDir` scratch volume named `dooku-logs` mounted at `/var/log/dooku` in both containers.
 
@@ -34,6 +26,16 @@
     title: Pod my-web-server running with ConfigMap mounted at `/etc/app-data`
     cascade: true
     ```
+
+## Note
+
+An important part of the CKAD exam has to do with storage and persistence, specifically:
+
+- Understanding the concept of [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/), [PersistentVolumes and PersistentVolumeClaims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/), and the notion of [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/).
+- Knowing how to create different types of volumes and claims, and how to mount them onto Pods.
+- Other ways to provide a Pod access to persistent storage.
+
+The ability to create such resources in this specific environment is a challenge.  At the time of this writing, it's a work in progress.  Adding coverage of this specific topics is something we plan to remedy.  In the meantime, please be sure to review other resources and [sample questions](https://github.com/dgkanatsios/CKAD-exercises/blob/master/g.state.md) on this subject.
 
 ## Check
 

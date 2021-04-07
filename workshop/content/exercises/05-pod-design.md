@@ -1,9 +1,9 @@
 
-1. Create a _Deployment_ named `hoth` with four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
+1. Create a _Deployment_ named `hoth` with two (2) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 
     ```examiner:execute-test
     name: deploy-hoth
-    title: hoth Deployment with 4 replicas of apache
+    title: hoth Deployment with 2 replicas of apache
     autostart: true
     cascade: true
     ```
@@ -92,10 +92,10 @@ command: k delete deploy,cj --all
 
 <h2 style="margin-top: 10em;">Solutions</h2>
 
-1. Create a _Deployment_ named `hoth` with four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
+1. Create a _Deployment_ named `hoth` with two (2) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 
     ```bash
-    k create deploy hoth --image=bitnami/apache:2.4.46 --replicas=4 
+    k create deploy hoth --image=bitnami/apache:2.4.46 --replicas=2
     ```
 
 1. The Deployment `yavin` has been upgraded, but the new Pods are not getting created. Rollback the Deployment `yavin` so that the Pods are working again.

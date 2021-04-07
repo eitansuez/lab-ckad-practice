@@ -19,6 +19,7 @@ spec:
       budget: medium
       secondary:
       - name: $(session_namespace)-apps
+        budget: small
     applications:
       terminal:
         enabled: true

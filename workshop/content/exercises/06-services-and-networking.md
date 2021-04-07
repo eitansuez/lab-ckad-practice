@@ -109,19 +109,19 @@ command: k delete deploy,pod,svc,netpol,ingress --all
         apiVersion: networking.k8s.io/v1
         kind: Ingress
         metadata:
-        name: greet-ingress
+          name: greet-ingress
         spec:
-        rules:
-        - host: {{session_namespace}}-greet.{{ingress_domain}}
+          rules:
+          - host: {{session_namespace}}-greet.{{ingress_domain}}
             http:
-            paths:
-            - pathType: Prefix
+              paths:
+              - pathType: Prefix
                 path: "/"
                 backend:
-                service:
+                  service:
                     name: greet
                     port:
-                    number: 8080
+                      number: 8080
         ```
 
     1. Apply the resource.

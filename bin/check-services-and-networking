@@ -24,8 +24,8 @@ check_cmd("kubectl exec ig-11 -- curl greet:8080 --connect-timeout 1", "Pod ig-1
 check_cmd("kubectl get services greet -o jsonpath='{.spec.type}' | grep -q -w ClusterIP", "Service greet is ClusterIP type?")
 
 print("\nQuestion 3:")
-check_cmd("k get ingress greet-ingress", "Does ingress greet-ingress exist?")
-check_cmd("curl ${INGRESS_PROTOCOL}:://${SESSION_NAMESPACE}-greet.${INGRESS_DOMAIN}", "Is ingress endpoint reachable?")
+check_cmd("kubectl get ingress greet-ingress", "Does ingress greet-ingress exist?")
+check_cmd("curl \"http://${SESSION_NAMESPACE}-greet.${INGRESS_DOMAIN}\"", "Is ingress endpoint reachable?")
 
 print("\nQuestion 4:")
 check_cmd("kubectl get service cara -o jsonpath='{.spec.ports[0].nodePort}' | grep -q -w 31888", "Service cara as NodePort exposed?")

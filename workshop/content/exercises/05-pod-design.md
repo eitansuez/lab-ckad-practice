@@ -90,7 +90,7 @@ Before proceeding to the next section, please delete deployments and cronjobs yo
 command: k delete deploy,cj --all
 ```
 
-## Solutions
+<h2 style="margin-top: 10em;">Solutions</h2>
 
 1. Create a _Deployment_ named `hoth` with four (4) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 

@@ -84,7 +84,7 @@ Before proceeding to the next section, please delete the deployments, pods, serv
 command: k delete deploy,pod,svc,netpol,ingress --all
 ```
 
-## Solutions
+<h2 style="margin-top: 10em;">Solutions</h2>
 
 1. Create a pod named `ig-11` with image `bitnami/nginx` and expose port 8080.
 

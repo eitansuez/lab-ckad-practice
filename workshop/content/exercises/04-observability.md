@@ -64,7 +64,7 @@ Before proceeding to the next section, please delete pods created in this sectio
 command: k delete pod --all
 ```
 
-## Solutions
+<h2 style="margin-top: 10em;">Solutions</h2>
 
 1. Create a Pod named `myredis` with the image `redis`. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command `redis-cli PING`.
 

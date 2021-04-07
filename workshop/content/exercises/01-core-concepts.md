@@ -54,7 +54,7 @@ command: k delete pod --all
 command: k delete pod --all --namespace {{session_namespace}}-apps
 ```
 
-## Solutions
+<h2 style="margin-top: 10em;">Solutions</h2>
 
 1. Execute a dry-run command to create, in yaml format, the resource definition for a namespace named `frontend`.  Write the yaml output to the file `my-namespace.yaml`.
 

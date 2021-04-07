@@ -84,7 +84,7 @@ Before proceeding to the next section, delete the config maps, secrets, pods, an
 command: k delete cm,pod,secret,sa --all
 ```
 
-## Solutions
+<h2 style="margin-top: 10em;">Solutions</h2>
 
 1. Create a config map with the name `my-config` and value `confa=exvalue`.
 

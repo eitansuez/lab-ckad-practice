@@ -35,7 +35,7 @@ An important part of the CKAD exam has to do with storage and persistence, speci
 - Knowing how to create different types of volumes and claims, and how to mount them onto Pods.
 - Other ways to provide a Pod access to persistent storage.
 
-The ability to create such resources in this specific environment is a challenge.  At the time of this writing, it's a work in progress.  Adding coverage of this specific topics is something we plan to remedy.  In the meantime, please be sure to review other resources and [sample questions](https://github.com/dgkanatsios/CKAD-exercises/blob/master/g.state.md) on this subject.
+The ability to create such resources in this specific environment is a challenge.  At the time of this writing, it's a work in progress.  Adding coverage of this specific topic is something we plan to remedy.  In the meantime, please be sure to review other resources and [sample questions](https://github.com/dgkanatsios/CKAD-exercises/blob/master/g.state.md) on this subject.
 
 ## Check
 
@@ -53,7 +53,7 @@ Before proceeding to the next section, please delete the resources you created i
 command: k delete deploy,pod,svc,cm --all
 ```
 
-## Solutions
+<h2 style="margin-top: 10em;">Solutions</h2>
 
 1. Create a pod named `vader` with image `bitnami/nginx`. Mount a volume named `vader-vol` at `/var/www/html`, which should live as long as pod lives.
 

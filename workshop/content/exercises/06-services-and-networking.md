@@ -81,7 +81,7 @@ command: check-services-and-networking
 Before proceeding to the next section, please delete the deployments, pods, services you created in this section:
 
 ```terminal:execute
-command: k delete deploy,pod,svc,netpol --all
+command: k delete deploy,pod,svc,netpol,ingress --all
 ```
 
 ## Solutions

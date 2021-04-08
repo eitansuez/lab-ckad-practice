@@ -23,7 +23,11 @@ Before proceeding to the next section, delete the config maps, secrets, pods, an
 command: k delete pod --all
 ```
 
-<h2 style="margin-top: 10em;">Solutions</h2>
+<div style="margin-top: 5em;"></div>
+
+```section:begin
+title: Solutions
+```
 
 1. Create a pod `mp-hello` with three containers, each with image `bitnami/nginx`, `bitnami/kubectl` and `bitnami/consul`, respectively. Name the container running the kubectl image `shell`.  Make the _shell_ container run the shell command `sleep infinity`.
 
@@ -62,3 +66,6 @@ command: k delete pod --all
         ```
 
     See [running a command in a shell](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell).
+
+```section:end
+```

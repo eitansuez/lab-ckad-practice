@@ -53,7 +53,11 @@ Before proceeding to the next section, please delete the resources you created i
 command: k delete deploy,pod,svc,cm --all
 ```
 
-<h2 style="margin-top: 10em;">Solutions</h2>
+<div style="margin-top: 5em;"></div>
+
+```section:begin
+title: Solutions
+```
 
 1. Create a pod named `vader` with image `bitnami/nginx`. Mount a volume named `vader-vol` at `/var/www/html`, which should live as long as pod lives.
 
@@ -194,3 +198,6 @@ command: k delete deploy,pod,svc,cm --all
         ```bash
         k apply -f my-web-server.yaml 
         ```
+
+```section:end
+```

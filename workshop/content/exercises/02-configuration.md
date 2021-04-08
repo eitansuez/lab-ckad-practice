@@ -84,7 +84,11 @@ Before proceeding to the next section, delete the config maps, secrets, pods, an
 command: k delete cm,pod,secret,sa --all
 ```
 
-<h2 style="margin-top: 10em;">Solutions</h2>
+<div style="margin-top: 5em;"></div>
+
+```section:begin
+title: Solutions
+```
 
 1. Create a config map with the name `my-config` and value `confa=exvalue`.
 
@@ -245,3 +249,6 @@ command: k delete cm,pod,secret,sa --all
     ```terminal:execute
     command: k explain pod.spec.serviceAccountName
     ```
+
+```section:end
+```

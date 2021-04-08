@@ -90,7 +90,11 @@ Before proceeding to the next section, please delete deployments and cronjobs yo
 command: k delete deploy,cj --all
 ```
 
-<h2 style="margin-top: 10em;">Solutions</h2>
+<div style="margin-top: 5em;"></div>
+
+```section:begin
+title: Solutions
+```
 
 1. Create a _Deployment_ named `hoth` with two (2) replicas of Pods with the image `bitnami/apache`. Be sure to use the version of this container image with the tag `2.4.46`.
 
@@ -121,3 +125,6 @@ command: k delete deploy,cj --all
     ```bash
     k create cj bespin --image=bitnami/kubectl --schedule="*/5 * * * *" -- date
     ```
+
+```section:end
+```

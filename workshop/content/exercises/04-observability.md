@@ -64,7 +64,11 @@ Before proceeding to the next section, please delete pods created in this sectio
 command: k delete pod --all
 ```
 
-<h2 style="margin-top: 10em;">Solutions</h2>
+<div style="margin-top: 5em;"></div>
+
+```section:begin
+title: Solutions
+```
 
 1. Create a Pod named `myredis` with the image `redis`. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command `redis-cli PING`.
 
@@ -218,3 +222,6 @@ command: k delete pod --all
     1. Edit the pod yaml, either remove the specified service account, or revise the service account name to `default`.
 
     1. Apply the pod spec.
+
+```section:end
+```

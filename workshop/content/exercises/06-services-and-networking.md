@@ -84,7 +84,11 @@ Before proceeding to the next section, please delete the deployments, pods, serv
 command: k delete deploy,pod,svc,netpol,ingress --all
 ```
 
-<h2 style="margin-top: 10em;">Solutions</h2>
+<div style="margin-top: 5em;"></div>
+
+```section:begin
+title: Solutions
+```
 
 1. Create a pod named `ig-11` with image `bitnami/nginx` and expose port 8080.
 
@@ -160,3 +164,6 @@ command: k delete deploy,pod,svc,netpol,ingress --all
         ```
 
     1. Apply the network policy (`k apply -f netpol.yaml`)
+
+```section:end
+```
